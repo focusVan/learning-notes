@@ -40,7 +40,39 @@ Git Notes
 	1.3 Viewing the Commit History
 		1.3.1 Viewing the Commit History
 			a. git log By defalut,with no arguments,it lists the commits made in repository in reverse chronological order
-			b. git log -p which shows the difference introduced in each commit. -2 which limits the output to only the last two entries
+			b. git log -p: which shows the difference introduced in each commit. -2 which limits the output to only the last two entries
+			c. git log --stat: To see some abbreviated stats for each commit
+			d. git log --pretty=oneline, --pretty=short, --pretty=full, --pretty=fuller, --pretty=format:"%h - %an, %ar : %s"
+			e. git log --graph: a nice little ASCII graph
+		1.3.2 Limiting Log Output
+			a. git log --since=1.days(--since="2017-04-26",--since="1 years 2 weeks 3 minutes ago")
+			b. git log --author(--grep: grep from commit messages)
+			c. git log -S STRING (find the last commit that added or removed the STRING)
+	1.4 Undoing Things
+		1.4.1 Undoing Things
+			a. git commit -amend: This command will commit files that you forgot and use the same snapshot with the last commit
+		1.4.2 Unstaging a Staged File
+			a. git reset HEAD FILE This command will unstage a staged file
+		1.4.5 Unmodedifying a Modefied File
+			a. git checkout -- FILE: This command revert changes
+	1.5 Working with Remotes
+		1.5.1 Showing your Remotes
+			a. git remote: your can see at least origin-that is the default name Git gives to the server you cloned from
+			b. git remote -v: showing the URLs that Git has stored for the shortname to be used when reading and writing to that remote
+		1.5.2 Adding Remote Repositories
+			a. git remote add <shorname> <url>: To add a new remote Git repository
+		1.5.3 Fetching and Pulling from Remotes
+			a. git fetch <url/remote-name>  Get data from remote(you should have a repository local first)
+			b. git fetch origin: To fetch any new work that has been pushed to that server since you cloned(or last fetched from),it only downloads the data and do not merge it with any of your work and modify what you are currently working on.
+			c. git pull origin: to automatically fetch and then merge that into your currently working on. 
+		1.5.4 Pushing to Remotes
+			a. git push [remote-name] [branch-name]: To push your branch to your remote server
+		1.5.5 Inspecting a Remote
+			a. git remote show [remote-name]: This command shows the configurations of command git pull and git push and other messages
+		1.5.6 Removing and Renaming Remotes
+			a. git remote rename <remote-name> <new-name>
+			b. git remote remove <remote-name>
+			
 				
 		
 	
