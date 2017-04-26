@@ -1,3 +1,4 @@
+MyBatis notes
 1.#和$的区别
 	myBatis将#{}解释为JDBC prepared statement的一个参数标记。
 	将${}解释为字符串替换（有SQL注入攻击的风险）
