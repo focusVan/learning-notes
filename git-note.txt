@@ -94,8 +94,17 @@ Git Notes
 			a. git config --global alias.<short> <full>
 2 Git Branching
 	2.1 Branches in a Nutshell
-		2.1.1 
-				
+		2.1.1 Branches in a Nutshell
+			a. it creates a snapshot when you commit. the snapshot contains a pointer to parents(when it has),a pointer to files summary and other messages. the summary contains pointers that points every file which has been changed.
+			b. branchs like master,branch just a pointer that points some snapshot.
+		2.1.2 Creating a New Branch
+			a. git branch <branchname>: This command creates a new pointer to the same commit you are currently on.Git keeps a special pointer called HEAD to the local branch you are currently on.git branch command only created a new branch - it did not switch to it
+		2.1.3 Switching Branches
+			a. git checkout <branchname>: switch branch
+			b. git log --oneline --decorate --graph --all
+	2.2 Basic Branching and Merging
+		2.2.1 Basic Braching
+			a. 
 		
 	
 	
