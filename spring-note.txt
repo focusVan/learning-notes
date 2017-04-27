@@ -1,0 +1,91 @@
+1.spring工作原理
+	1.springmvc将所有的请求都交给DispatcherServlet,它会委托应用系统的其他模块对请求进行真正的处理。
+	2.DispatcherServlet会查询一个或多个HanderMapping，找到处理请求的Controller.
+	3.DispatcherServlet将请求提交到目标Controller.
+	4.Controller进行处理后会返回一个ModelAndView。
+	5.DispatcherServlet会查询一个或多个ViewResolver视图解析器，找到ModelAndView指定的视图对象。
+	6.视图对象负责渲染返回给客户端。
+2.为什么要使用Spring
+	1.AOP特性，使用AOP后可以将公共服务分解成方面并应用到域对象上，同时不会增加域对象的复杂性。
+	2.IOC特性，由容器管理对象。
+3.spring事务管理
+	事务可以防止出现脏数据，防止数据库出问题，spring中一般是使用TranscationManager进行管理，可以
+	通过spring的注入完成此功能。
+	1.TransactionDefinition//事务属性定义
+	2.TransactionStatus//代表了当前的事务，可以提交，回滚。
+	3.PlatformTransactionManager//spring提供的用于管理事务的基础接口，常用DataSourceTransactionManager
+	spring提供的事务分为两类：声明式和注解式
+	事务的五个隔离级别
+	1.ISOLATION_DEFAULT（使用数据库默认隔离级别）;
+	2.ISOLATION_READ_UNCOMMITED(产生脏读，不可重复读和幻读)；
+	3.ISOLATION_READ_COMMITED(产生不可重复读和幻读)；
+	4.ISOLATION_REPEATABLE_READ(幻读)
+	5.ISOLATION_SERIZABLE
+	七个传播行为：
+	1.PROPAGATION_REQUIRED(存在一个事务，则加入当前事务，没有，则开启一个新的事务)
+	2.PROPAGATION_SUPPORTS(存在一个事务，则加入当前事务，没有，则非事务的执行)
+	3.PROPAGATION_MANDATORY(存在一个事务，则加入当前事务，没有一个活的事务，抛异常)
+	4.PROPAGATION_NEW(总是开启新的事务，已存在一个事务，则挂起之)
+	5.PROPAGATION_SUPPORTED(总是非事务执行，并挂起任何存在的事务)
+	6.PROPAGATION_NEVER(总是非事务执行，已存在一个事务，则抛异常)
+	7.PROPAGATION_NESTED
+4.spring里面如何配置数据库驱动
+	org.springframework.jdbc.datasource.DriverManagerDataSource
+5.applicationContext.xml
+	ContextLoaderListener是一个ServletContextListener，在web应用启动的时候初始化。在缺省的情况下，
+	它会在WEB-INF/applicationContext.xml文件找到spring的配置。可以通过定义一个<context-param>元素名字
+	为contextConfigLocation来改变spring配置文件的位置。
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+		<context-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring.xml</param-value>
+		</context-param>
+	</listener>
+	可以通过 WebApplicationContextUtils.getWebApplicationContext获得applicationContext
+6.解释DI和IOC
+	基本思想就是把类的依赖从内部转化到外部，以减少依赖
+7.spring中的BeanFactory余ApplicationContext的作用
+	1.BeanFactory负责读取bean配置文档，管理bean的加载、实例化、维护bean之间的依赖关系，bean的生命周期。
+	2.除了以上功能外，还提供：
+		a.国际化支持
+		b.资源访问：Resource rs = ctx.getResource(path);
+		c.事件传递：通过实现ApplicationContextAware接口
+8.bean的生命周期
+	1.bean的定义（配置文件中定义）
+	2.bean的初始化
+		a.在配置文件中通过指定init-method属性完成
+		b.实现org.springframework.beans.factory.initializingBean接口
+	3.bean的调用
+		a.使用BeanWrapper
+		b.使用BeanFactory的getBean()
+		c.使用ApplicationContext的getBean()
+	4.bean的销毁
+9.springmvc的控制器
+	单列模式，在多线程访问的时候有线程安全问题，不可用同步，会影响性能，解决方案是控制器里不写字段
+10.@RequestMapping用在类上面的作用
+	表示该类的所有响应请求的方法都以该地址作为父路径
+11.配置拦截get方式提交的方法
+	在@RequestMapping注解里面加上method=RequestMethod.GET
+12.前台传入后台的参数
+	直接在形参里声明可以得到
+13.前台传入多个参数，且这些参数是某对象属性
+	直接在形参声明该对象可以得到
+14.springmvc处理返回值的方式
+	根据配置文件中InternalResourceViewResolver的前缀和后缀配置
+15.设置重定向和转发
+	在返回值前面加forward:为转发，加redirect:为重定向
+16.后台向前台传递数据
+	ModelMap对象，前台通过el表达式拿到
+17.springmvc和ajax相互调用
+	通过jackson框架可以把java对象直接转为js可以识别的Json对象
+	a.加入jackson.jar
+	b.在配置文件中配置json的映射
+	c.在ajax方法里面直接返回object，list等，但方法前面要加上@ResponseBody注解
+18.springmvc里面拦截器的写法
+	a.实现接口
+	b.继承适配器类
+
+
+
+	
