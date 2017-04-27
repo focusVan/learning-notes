@@ -104,7 +104,7 @@ Git Notes
 			b. git log --oneline --decorate --graph --all
 	2.2 Basic Branching and Merging
 		2.2.1 Basic Braching
-			a. b
+			a
 		
 	
 	
