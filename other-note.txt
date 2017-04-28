@@ -1,32 +1,32 @@
-��ѧ�ʼ�
-	1.�������������ݱ�����޸ĳֱ���̬�ȣ���ˣ����������ݴ��������У������ݴ�������״̬����������ʵ�֣������������ݿ��ṩ��������
-	2.�ֹ������ֹ���������Ϊ����һ������²�����ɳ�ͻ�����������ݽ����ύ���µ�ʱ�򣬲Ż���ʽ�����ݵĳ�ͻ�����м�⣬������ֳ�ͻ�ˣ��򷵻��û��������Ϣ�����û��������ȥ�����ֹ�����ʵ��һ��ʹ�����ݰ汾��¼����
-	3.�ֲ�ʽ�㷨��
-	4.hashmap��ԭ����
-	����+����
-	5.java��ֻ��ֵ���ݡ�
-	6.���̵߳�ʵ�ַ�ʽ��
-	���ַ�ʽ������Callable������ִ�к�ɷ���ֵ��Runnable�������ܷ���ֵ��call()���������׳��쳣��run()�������ܣ�����Callable������õ�һ��Future����Future�����ʾ�첽����Ľ�����ṩ�˼������Ƿ���ɵķ�������ȡ�������ִ�С�
-	7.�̳߳ص����������
-	javaͨ��Executors�ṩ�����̳߳أ�
-	a.CachedThreadPool���ɻ����̳߳أ�����̳߳س��ȳ���������Ҫ���������տ����̣߳����޿ɻ��գ����½��̡߳�
-	b.FixedThreadPool: ����һ�������̳߳أ��ɿ�����󲢷������������̻߳��ڶ����еȴ��������̳߳صĴ�С��ø���ϵͳ��Դ�������á���Runtime.getRuntime().availableProcessors();
-	c.ScheduledThreadPool������һ�������̳߳أ�֧�ֶ�ʱ�������������ִ��
-	d.SingleThreadExecutor: ����һ�����̻߳����̳߳أ���ֻ����Ψһ�Ĺ����߳���ִ�����񣬱�֤����������ָ��˳��ִ�С�
-	8.��Ϥ�����ģʽ��
-	9.������ģʽ��װ��ģʽ������
-	10.redis�Ļ�������
-	11.spring����������������������������
-	a.��������
-	Servlet�еĹ�����Filter��ʵ����javax.servlet.Filter�ӿڵķ���˳���������servlet��������Ҫ����;�ǹ����ַ����롢��һЩҵ���߼��жϵȡ�����ԭ���ǣ�ֻҪ����web.xml�ļ����ú�Ҫ���صĿͻ����󼴿ɣ���ʱ���Զ��������Ӧͳһ���ñ��룬�򻯲�����ͬʱ�����Խ����߼��жϣ����Ƿ��¼��Ȩ�޵ȡ����������ǻ��ں����ص���ɵġ�
-	b.��������
-	Servlet�ļ�����ʵ����javax.servlet.ServletContextListener�ӿڵķ��������Ҫ�����ǣ���һЩ��ʼ�����������ӹ���������һЩ���������ݡ�
-	c.��������
-	�����������������̵�һ��ʵ�֣��ǻ���java�ķ�����ơ���������servlet������ֻ��action����������
+杂学笔记
+	1.悲观锁。对数据被外界修改持保守态度，因此，在整个数据处理过程中，将数据处于锁定状态。悲观锁的实现，往往依靠数据库提供的锁机制
+	2.乐观锁。乐观锁假设认为数据一般情况下不会造成冲突，所以在数据进行提交更新的时候，才会正式对数据的冲突与否进行检测，如果发现冲突了，则返回用户错误的信息，让用户决定如何去做。乐观锁的实现一般使用数据版本记录机制
+	3.分布式算法。
+	4.hashmap的原理。
+	数组+链表
+	5.java中只有值传递。
+	6.多线程的实现方式。
+	三种方式。其中Callable的任务执行后可返回值，Runnable的任务不能返回值；call()方法可以抛出异常，run()方法不能；运行Callable任务可拿到一个Future对象，Future对象表示异步计算的结果，提供了检查计算是否完成的方法，可取消任务的执行。
+	7.线程池的种类和区别。
+	java通过Executors提供四种线程池：
+	a.CachedThreadPool：可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程。
+	b.FixedThreadPool: 创建一个定长线程池，可控制最大并发数，超出的线程会在队列中等待。定长线程池的大小最好根据系统资源进行设置。如Runtime.getRuntime().availableProcessors();
+	c.ScheduledThreadPool：创建一个定长线程池，支持定时及周期性任务的执行
+	d.SingleThreadExecutor: 创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序执行。
+	8.熟悉的设计模式。
+	9.适配器模式和装饰模式的区别。
+	10.redis的基本类型
+	11.spring过滤器、监听器和拦截器的区别。
+	a.过滤器。
+	Servlet中的过滤器Filter是实现了javax.servlet.Filter接口的服务端程序，依赖于servlet容器，主要的用途是过滤字符编码、做一些业务逻辑判断等。工作原理是，只要你在web.xml文件配置好要拦截的客户请求即可，此时可以对请求或响应统一设置编码，简化操作，同时还可以进行逻辑判断，如是否登录，权限等。整个过程是基于函数回掉完成的。
+	b.监听器。
+	Servlet的监听器实现了javax.servlet.ServletContextListener接口的服务程序，主要作用是：做一些初始化的内容添加工作，设置一些基本的内容。
+	c.拦截器。
+	拦截器是面向切面编程的一种实现，是基于java的反射机制。不依赖于servlet容器，只对action请求起作用
 	12.spring AOP
-	���й�ע�㣺����Щ�����������أ����غ���ô������ ���棺�Ժ��й�ע��ĳ������ӵ㣺springֻ֧�ַ������͵����ӵ㣻����㣺�����ӵ�������صĶ��壻֪ͨ�����ص����ӵ�֮��Ҫִ�еĴ��룻Ŀ����󣺴�����Ŀ�����֯�룺������Ӧ�õ�Ŀ����󲢵��´������󴴽��Ĺ��̣����룺�ڲ��޸Ĵ����ǰ���£����������������Ϊ�ද̬������һЩ�������ֶΡ�
-	spring��aop������spring��IOC�����������ɣ���������������ϵҲ��IOC�������������Ĭ��ʹ��java��̬����������AOP���������������಻�Ǵ����ӿڵ�ʱ��spring���л�Ϊʹ��CGLIB������
-	13.mybatis����������������xml�еĶ���
+	横切关注点：对哪些方法进行拦截，拦截后怎么处理； 切面：对横切关注点的抽象；连接点：spring只支持方法类型的连接点；切入点：对连接点进行拦截的定义；通知：拦截到连接点之后要执行的代码；目标对象：代理的目标对象；织入：将切面应用到目标对象并导致代理对象创建的过程；引入：在不修改代码的前提下，引入可以在运行期为类动态地添加一些方法或字段。
+	spring的aop代理由spring的IOC容器负责生成，管理，其依赖关系也由IOC容器负责管理。默认使用java动态代理来创建AOP代理，当代理的类不是代理接口的时候，spring会切换为使用CGLIB代理。
+	13.mybatis的批量插入数据在xml中的定义
 	<insert id="addTrainRecordBatch" useGeneratedKeys="true" parameterType="java.util.List">  
     		<selectKey resultType="long" keyProperty="id" order="AFTER">  
         		SELECT  
@@ -38,17 +38,17 @@
         		(#{item.addTime},#{item.empId},#{item.activityId},#{item.flag})  
     			</foreach>  
 	</insert>  
-	collection���ԣ�a.���������ǵ������Ҳ���������List��ʱ��ֵΪlist
-			b.���������ǵ������в���������һ��array��ʱ��ֵΪarray
-			c.�������Ĳ����Ƕ����ʱ�򣬾�Ҫ��װ��һ��map��
-	15.�ж�ƽ�������
+	collection属性：a.如果传入的是单参数且参数类型是List的时候，值为list
+			b.如果传入的是单参数切参数类型是一个array的时候，值为array
+			c.如果传入的参数是多个的时候，就要封装成一个map了
+	15.判断平衡二叉树
 	16.jvm gc
-	17.����ƽ�����ж�һ��sql����
-	18.��Ϣ����
-	19.����
-	20.100�������10����Ʒ��ֻ����10�����������и�����ͬ
-	21.���߳�jvm gc����
-	22.A,1,B,5,C,7��ν���ĸ����ǰ�棬�������ں��棬�����ı���ĸ����ĸ�����������ֵ����˳��
+	17.排序平衡树判断一个sql分组
+	18.消息队列
+	19.缓存
+	20.100人随机抢10个商品，只其中10个人能抢到切概率相同
+	21.多线程jvm gc机制
+	22.A,1,B,5,C,7如何将字母排在前面，数字排在后面，而不改变字母与字母，数字与数字的相对顺序
 	public static String sortArray(String str) {
     	StringBuffer letterBuffer = new StringBuffer();
    	StringBuffer numberBuffer = new StringBuffer();
@@ -67,7 +67,7 @@
    	 String test = "1a2b3c4d";
    	 System.out.println(sortArray(test));
 	}
-	23.ͳ�ƶ�����Ϣ��A,B��C��ʾ��A���ˣ�û������B����ÿ�����CԪ
-	24.��������ÿ��10�������
+	23.统计订单信息，A,B，C表示有A个人，没人下了B单，每单金额C元
+	24.怎样处理每秒10万个并发
 	
 --

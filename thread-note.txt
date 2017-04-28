@@ -1,22 +1,22 @@
-���߳�ѧϰ�ʼ�
-һ �ֲ�ʽ�Ļ���
-	1.java���̳߳нӸ�������
-	2.java nio�нӸ߲����뽻��Э��Ķ���
-	3.java����������л��뷴���л�
-	4.���ģʽ��Ӧ�ã���֤Ӧ�õ���չ��
-��������
-	1.����T1,T2,T3�����̣߳���α�֤T2��T1ִ�����ִ�У�T3��T2ִ�����ִ��?
-	thread.join��ָ�����̼߳��뵽��ǰ�̣߳����Խ���������ִ�е��̺߳ϲ�Ϊ˳��ִ�е��̡߳��������߳�B�е������߳�A��join()������֪���߳�Aִ����Ϻ󣬲Ż����ִ���߳�B��
-	2.��Java��Lock�ӿڱ�synchronized���������ʲô������Ҫʵ��һ����Ч�Ļ��棬����������û�������ֻ����һ���û�д���Դ�����֤���������ԣ������ʵ�֣�
-	a.Lock�ӿ��ڶ��̺߳Ͳ����������������������Ϊ����д�ֱ��ṩ����������������д��ConcurrentHashMap�����ĸ��������ݽṹ����������������
-	b.����cpu�ײ����lock�ж�����д�������֣�����ֻ��д��������
-	c.��������л������ľ������Ż�������synchronized��˵����ֻ��һ���������еģ�������Ŷ�Ӧ�ڲ�ͬҵ�����͵��̣߳�ֻ��notifyall����������Ӱ��ǳ��󡣱����ѵ������о����������Ժ�󲿷ּ���wait,�����˴������߳��������л������ľ�������lock���Զ��ڲ�ͬ����������wait-set��
-	d.�����ı�����
-	3.��java��wait��sleep�����Ĳ�ͬ��
-	wait()������Object��Ķ��󷽷���sleep()������Thread����෽�����ڵȴ�ʱwait���ͷ�������sleepһֱ��������waitͨ���������߳̽�����sleepͨ����������ִͣ�С�
-	4.��javaʵ����������
-	5.��javaд���������������-����������
-	6.��java���һ���ᵼ�������ĳ��򣬺ͽ����ʽ
+多线程学习笔记
+一 分布式的基础
+	1.java多线程承接高吞吐量
+	2.java nio承接高并发与交互协议的定制
+	3.java反射完成序列化与反序列化
+	4.设计模式的应用，保证应用的扩展性
+若干问题
+	1.现有T1,T2,T3三个线程，如何保证T2在T1执行完后执行，T3在T2执行完后执行?
+	thread.join把指定的线程加入到当前线程，可以将两个交替执行的线程合并为顺序执行的线程。比如在线程B中调用了线程A的join()方法，知道线程A执行完毕后，才会继续执行线程B。
+	2.在Java中Lock接口比synchronized块的优势是什么？你需要实现一个高效的缓存，它允许多个用户读，但只允许一个用户写，以此来保证它的完整性，该如何实现？
+	a.Lock接口在多线程和并发编程中最大的优势是它们为读和写分别提供了锁，它能满足你写像ConcurrentHashMap这样的高性能数据结构和有条件的阻塞。
+	b.利用cpu底层机制lock有读锁与写锁的区分，可以只对写操作加锁
+	c.上下午的切换和锁的竞争的优化，对于synchronized来说，它只有一个条件队列的，里面放着对应于不同业务类型的线程，只能notifyall，对于性能影响非常大。被唤醒的锁进行竞争，完了以后大部分继续wait,导致了大量的线程上下文切换和锁的竞争。而lock可以对于不同的条件创建wait-set。
+	d.死锁的避免上
+	3.在java中wait和sleep方法的不同？
+	wait()方法是Object类的对象方法，sleep()方法是Thread类的类方法。在等待时wait会释放锁，而sleep一直持有锁。wait通常被用于线程交互，sleep通常被用于暂停执行。
+	4.用java实现阻塞队列
+	5.用java写代码来解决生产者-消费者问题
+	6.用java编程一个会导致死锁的程序，和解决方式
 	class MyThread implements Runnable{
 		private Object ob1 = new Object();
 		private Object ob2 = new Object();
@@ -51,27 +51,27 @@
 			}
 		}
 	}
-	7.ʲô��ԭ�Ӳ�����java�е�ԭ�Ӳ�����ʲô?
-	8.java�е�volatile�ؼ���ʲô���ã�����ʹ��������java������synchronized������ʲô��ͬ��
-	9.ʲô�Ǿ�����������η��ֺͽ��������
-	10.���ʹ��thread dump����η���thread dump?
-	unix��ʹ��kill -3��Ȼ��thread dump���ӡ��־����windows���á�ctrl+break��
-	11.Ϊʲô����start()������ִ��run()������Ϊʲô����ֱ�ӵ���run()������
-	����start()����ʱ�ᴴ���µ��̲߳�ִ��run()����
-	12.java����λ���һ���������̣߳�	
-	13.��java��CycliBarriar��CountdownLatch��ʲô����
-	14.ʲô�²��ɱ��������д����Ӧ����ʲô������
-	15.���̻߳����������ĳ�������ͽ������
-	16.��java����ɫ�̺߳ͱ����߳�����
-	17.ʲô�Ƕ��߳��е��������л�
-	18.��������������������뼢��������
-	19.Java���õ����̵߳����㷨��ʲô
-	20.��Java��ʲô���̵߳���
-	21.���߳�������ô�������ɲ�׽�쳣
-	22.ʲô���߳��飬Ϊʲô��Java�в��Ƽ�ʹ��
-	23.Ϊʲôʹ��Executor��ܱ�ʹ��Ӧ�ô����͹����̺߳�
-	24.��Java��Executor��Executors������
-	25.�����Windows��Linux�ϲ����ĸ��߳�ʹ�õ�CPUʱ���
+	7.什么是原子操作，java中的原子操作是什么?
+	8.java中的volatile关键是什么作用？怎样使用它？在java中它跟synchronized方法有什么不同？
+	9.什么是竞争条件，如何发现和解决竞争？
+	10.如何使用thread dump？如何分析thread dump?
+	unix中使用kill -3，然后thread dump会打印日志，在windows中用“ctrl+break”
+	11.为什么调用start()方法会执行run()方法，为什么不能直接调用run()方法？
+	调用start()方法时会创建新的线程并执行run()方法
+	12.java中如何唤醒一个阻塞的线程？	
+	13.在java中CycliBarriar和CountdownLatch有什么区别？
+	14.什么事不可变对象，它对写并发应用有什么帮助？
+	15.多线程环境中遇到的常见问题和解决方法
+	16.在java中绿色线程和本地线程区别
+	17.什么是多线程中的上下文切换
+	18.死锁与活锁的区别，死锁与饥饿的区别
+	19.Java中用到的线程调度算法是什么
+	20.在Java中什么是线程调度
+	21.在线程中你怎么处理不可捕捉异常
+	22.什么是线程组，为什么在Java中不推荐使用
+	23.为什么使用Executor框架比使用应用创建和管理线程好
+	24.在Java中Executor和Executors的区别
+	25.如何在Windows和Linux上查找哪个线程使用的CPU时间最长
 
 --
 --

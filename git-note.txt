@@ -2,8 +2,8 @@ Git Notes
 1 Git Basic
 	1.1 Getting a Git Repository
 		1.1.1 Getting a Git Repository
-			a. inti repository£º cd E:/focus/my_repository ->git init
-			b. first commit£º git add FILES -> git add LICENSE -> git commit -m DESCRIPTION
+			a. inti repositoryï¼š cd E:/focus/my_repository ->git init
+			b. first commitï¼š git add FILES -> git add LICENSE -> git commit -m DESCRIPTION
 		1.1.2 Cloning an Existing Repository
 			a. git clone: Git receives a full copy of nearly all data that the server has, Every version of every file for the history of the project is pulled down by default when you run git clone
 			b. git clone URL or git clone user@server:path/to/repo.git(useing SSH transfer protocal)

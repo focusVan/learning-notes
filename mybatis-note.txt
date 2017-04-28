@@ -1,30 +1,30 @@
 MyBatis notes
-1.#��$������
-	myBatis��#{}����ΪJDBC prepared statement��һ��������ǡ�
-	��${}����Ϊ�ַ����滻����SQLע�빥���ķ��գ�
-2.����ʹ��LIKE�ķ�ʽ
-	a.��java����������SQLͨ�����
-	b.��SQL�����ƴ��ͨ�����
-3.���ִ����������
+1.#和$的区别
+	myBatis将#{}解释为JDBC prepared statement的一个参数标记。
+	将${}解释为字符串替换（有SQL注入攻击的风险）
+2.两种使用LIKE的方式
+	a.在java代码中添加SQL通配符。
+	b.在SQL语句中拼接通配符。
+3.如何执行批量插入
 	sqlSessionFactory.openSession(ExecutorType.BATCH);
-4.��λ�ȡ�Զ����ɵ�����ֵ
+4.如何获取自动生成的主键值
 	<insert id="method" useGeneratorKeys="true" keyProperty="id">
-5.myBatis�ĺô�
-	a.myBatis��sql����javaԴ�ļ��ж������������ڵ�����xml�ļ��б�д.
-	b.��װ�˵ײ��jdbc api�ĵ���ϸ�ڣ������Զ��Ľ������ת����java bean.
-	c.������������ݿ��������ص�ȥ��дsql��䣬��ýϸߵĲ�ѯЧ�ʺ���ɸ��Ӳ�ѯ.
-6.myBatis�Ľӿ�ӳ��
-	��mybatis�����ⶨ��ӿڣ�Ȼ��ѽӿ���ķ�����SQL���󶨣�����ֱ�ӵ��ýӿڷ����Ϳ���
-	��ԭ����SqlSession�ṩ�ķ��������
-7.�ӿڰ󶨵ķ�ʽ
-	a.ע��󶨣��ڽӿڵķ����ϼ��� @Select @Update��ע���������Sql�����ʵ�ְ�
-	b.ͨ��xml����дSQL���󶨣�xmlӳ���ļ���namespace����Ϊ��ڵ�ȫ·����
-8.myBatis�Ķ�̬SQL���趨
-	ͨ��if�ڵ�ʵ�ֵģ�ͨ��OGNL�﷨ʵ��
-9.myBatis�ĺ��Ĵ�����
+5.myBatis的好处
+	a.myBatis把sql语句从java源文件中独立出来，放在单独的xml文件中编写.
+	b.封装了底层的jdbc api的调用细节，并能自动的将结果集转化成java bean.
+	c.可以灵活结合数据库自身的特点去编写sql语句，获得较高的查询效率和完成复杂查询.
+6.myBatis的接口映射
+	在mybatis中任意定义接口，然后把接口里的方法和SQL语句绑定，我们直接调用接口方法就可以
+	比原来的SqlSession提供的方法更灵活
+7.接口绑定的方式
+	a.注解绑定：在接口的方法上加上 @Select @Update等注解里面包含Sql语句来实现绑定
+	b.通过xml里面写SQL来绑定，xml映射文件的namespace必须为借口的全路径名
+8.myBatis的动态SQL的设定
+	通过if节点实现的，通过OGNL语法实现
+9.myBatis的核心处理类
 	SqlSession
-10.myBatis�Ļ���
-	һ���������session���棬Ĭ�Ͼ��У���������������������ռ��Ĭ���Ǵ򿪵�,ʹ�ö���
-	����������Ҫʵ��Serializable�ӿڣ���������ӳ���ļ�������<cache/>
-11.myBatis�ķ�ҳ
-	�ò��
+10.myBatis的缓存
+	一级缓存放在session里面，默认就有，二级缓存放在它的命名空间里，默认是打开的,使用二级
+	缓存属性类要实现Serializable接口，在在它的映射文件中配置<cache/>
+11.myBatis的分页
+	用插件

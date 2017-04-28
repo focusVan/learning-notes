@@ -1,24 +1,24 @@
-Tomcat����ѧϰ�ʼ�
-һ.�Ż���������
-	1.�޸�tomcat�˿ں�
+Tomcat调优学习笔记
+一.优化连接配置
+	1.修改tomcat端口号
 	conf->server.xml->port
-	2.tomcatĬ�ϲ���BIOģ�ͣ����Ե���ΪNIOģ��
-	protocal��Ϊ��org.apache.coyote.http11.Http11NioProtocol
-	3.URIEncoding="UTF-8": ʹ��tomcat���Խ����������������ļ���url
-	4.maxSpareThreads: �������״̬���߳������ڸ���ֵ������Щ�߳���ֹ������������е��߳�������
-	5.minSpareThreads: ��С�����߳�����tomcat����ʱ�ĳ�ʼ�߳�����
-	6.connectionTimeout: �������ӳ�ʱ������
-	7.acceptCount: ���߳����ﵽmaxThreads�󣬺�������ᱻ����һ���ȴ����еĴ�С������ö������ˣ���ֱ��refuse connection
-	8.useURIValidationHack������Ϊfalse���Լ��ٶ�һЩurl�Ĳ���	Ҫ�ļ�����ʡ����
-	9.ennableLookups: ����Ϊfalse��������DNS��ѯ�����ܵ�Ӱ��
-	10.compression="on" compressionMinSize="2048" 		compressableMimeType: ѹ�����Դ�������վ����ٶȣ����Խ�		ʡ40%���ҵ�����
-	11. httpsЭ�����8443�˿ڶ˵�����
-��.�Ż�JDK
-	1.tomcatĬ�Ͽ���ʹ�õ��ڴ�Ϊ128MB,Windows�£����ļ�{tomcat_home}/bin/catalina.bat,�������ã�JAVA_OPTS="$JAVA_OPTS" 
--Xms �����ڴ��40% -Xmx �����ڴ��80% -XX:PermSize �����ڴ��1/64
--XX��MaxPermSize �����ڴ��1/4
-��.tomcat Connector����ģʽ
-	1.bio Ĭ�ϵ�ģʽ��û�о����κ��Ż�������֧��
-	2.nio ����java���첽IO����
+	2.tomcat默认采用BIO模型，可以调整为NIO模型
+	protocal改为：org.apache.coyote.http11.Http11NioProtocol
+	3.URIEncoding="UTF-8": 使得tomcat可以解析含有中文名的文件的url
+	4.maxSpareThreads: 如果空闲状态的线程数多于该数值，则将这些线程终止，减少这个池中的线程总数。
+	5.minSpareThreads: 最小备用线程数：tomcat启动时的初始线程数。
+	6.connectionTimeout: 网络连接超时毫秒数
+	7.acceptCount: 当线程数达到maxThreads后，后续请求会被放入一个等待队列的大小，如果该队列满了，就直接refuse connection
+	8.useURIValidationHack：设置为false可以减少对一些url的不必	要的检查而减省开销
+	9.ennableLookups: 设置为false可以消除DNS查询对性能的影响
+	10.compression="on" compressionMinSize="2048" 		compressableMimeType: 压缩可以大大提高网站浏览速度，可以节		省40%左右的流量
+	11. https协议会走8443端口端的配置
+二.优化JDK
+	1.tomcat默认可以使用的内存为128MB,Windows下，在文件{tomcat_home}/bin/catalina.bat,增加配置：JAVA_OPTS="$JAVA_OPTS" 
+-Xms 物理内存的40% -Xmx 物理内存的80% -XX:PermSize 物理内存的1/64
+-XX：MaxPermSize 物理内存的1/4
+三.tomcat Connector运行模式
+	1.bio 默认的模式，没有经过任何优化处理和支持
+	2.nio 利用java的异步IO技术
 	3.apr 
 --

@@ -1,44 +1,44 @@
 SQL note
-1 ����ģ��
-	a. ����ģ�ͣ��Կͻ��Ĺ۵���뷨Ϊ����������ʵ��������ĳ���E-Rͼ��ʵ��-��ϵͼ��������
-	b. �߼�����ģ�ͣ��û����������ݿ��е�����ģ�ͣ����ù�ϵ����ģ��
-	c. ��������ģ�ͣ�������ʾ���ݵĴ洢�ṹ��
-2 E-Rͼ��ʵ�壨�����Σ���ά���������ԣ���Բ����ά�����У�����ϵ�����Σ�
-3 ��ϵ���ݿ��еĹ�ϵģʽ
-	a. ����ģʽ��ģʽ���������������ݿ��е��߼��ṹ������ʵ�����е�ʵ�������ݿ�ϵͳ�еľ�����֣�һ����ϵ�߼��ṹ��Ӧһ�Ŷ�ά����
-	b. ��ģʽ���û�ģʽ��������ģʽ�ж����������û����������ݣ�����ͼ�ȡ�
-	c. ��ģʽ���洢ģʽ���������������ݵ������ṹ�����ݵĴ洢��ʽ�ģ�����������֯��ʽ�����ݼ�¼�Ĵ洢��ʽ�ȡ�
-4 SQL������
-	4.1 ���ݶ��壨Data Definition Language,DDL)
-		4.1.1 ������CREATE��
-		4.1.2 �޸ģ�ALTER)
-		4.1.3 ɾ����DROP��
-	4.2 ���ݲ�ѯ��Data Query Language,DQL)
-		4.2.1 ��ѯ��SELECT��
-			5���Ӿ䣺FROM�Ӿ䡢WHERE�Ӿ䡢GROUP BY�Ӿ䡢HAVING�Ӿ䡢WITH�Ӿ�
-	4.3 ���ݲ�����Data Manipulation Language,DML)
-		4.3.1 ���루INSERT��
-		4.3.2 ���£�UPDATE��
-		4.3.3 ɾ����DELETE��
-	4.4 ���ݿ��ƣ�Data Control Language,DCL��
-		4.4.1 ��Ȩ��GRANT��
-		4.4.2 ���գ�REVOKE��
-	4.5 �������
-		4.5.1 �ύ��COMMIT��
-		4.5.2 �ع���ROLLBACK��
-5 ���õ���������
-	5.1 ����
-		TINYINT��1���ֽ� -2^7~2^7-1 SMALLINT��2���ֽ� -2^15~2^15-1 MEDDIUMINT��3���ֽ� -2^23~2^23-1 INT��4���ֽ� -2^31~2^31-1 BIGINT��8���ֽ� -2^63~2^23-1
-		INT(4): �����ڵ�����Ϊ�����ʾ���ȣ���Ӱ��ȡֵ��Χ
-	5.2 ����
-		FLOAT(m,n)��4���ֽ� ��ȷ��С�����7λ DOUBLE(m,n)��8���ֽ� ��ȷ��С�����15λ ����mΪ�������ֵ���λ����nΪС���������ָ���
-	5.3 ������ʱ��
-		DATE�� Ĭ�����ݸ�ʽ��YYYY-MM-DD TIME�� Ĭ�ϸ�ʽΪ��HH:MM:SS DATETIME��Ĭ�ϸ�ʽΪ��YYYY-DD-MM HH:MM:SS
-	5.4 �ַ�
-		CHAR(n)�������ַ����ݣ�nΪ����ַ����ȣ�0~255 VARCHAR(n)��1~65535 TINYTEXT��1~65535 TEXT��1~2^16-1 MEDUYNTEXT��1~2^24-1 LONGTEXT��1~2^32-1
-	5.5 ������
+1 数据模型
+	a. 概念模型：以客户的观点和想法为基础，对现实世界事物的抽象，E-R图（实体-关系图）描述。
+	b. 逻辑数据模型：用户看到的数据库中的数据模型，常用关系数据模型
+	c. 物理数据模型：用来表示数据的存储结构。
+2 E-R图：实体（正方形，二维表），属性（椭圆，二维表的列），关系（菱形）
+3 关系数据库中的关系模式
+	a. 概念模式（模式）：用来描述数据库中的逻辑结构，即现实世界中的实体在数据库系统中的具体表现，一个关系逻辑结构对应一张二维表。
+	b. 外模式（用户模式）：在外模式中定义了允许用户操作的数据，如视图等。
+	c. 内模式（存储模式）：用来描述数据的物理结构和数据的存储方式的，如索引的组织方式，数据记录的存储方式等。
+4 SQL语句分类
+	4.1 数据定义（Data Definition Language,DDL)
+		4.1.1 创建（CREATE）
+		4.1.2 修改（ALTER)
+		4.1.3 删除（DROP）
+	4.2 数据查询（Data Query Language,DQL)
+		4.2.1 查询（SELECT）
+			5个子句：FROM子句、WHERE子句、GROUP BY子句、HAVING子句、WITH子句
+	4.3 数据操作（Data Manipulation Language,DML)
+		4.3.1 插入（INSERT）
+		4.3.2 更新（UPDATE）
+		4.3.3 删除（DELETE）
+	4.4 数据控制（Data Control Language,DCL）
+		4.4.1 授权（GRANT）
+		4.4.2 回收（REVOKE）
+	4.5 事务控制
+		4.5.1 提交（COMMIT）
+		4.5.2 回滚（ROLLBACK）
+5 常用的数据类型
+	5.1 整数
+		TINYINT：1个字节 -2^7~2^7-1 SMALLINT：2个字节 -2^15~2^15-1 MEDDIUMINT：3个字节 -2^23~2^23-1 INT：4个字节 -2^31~2^31-1 BIGINT：8个字节 -2^63~2^23-1
+		INT(4): 括号内的数字为最大显示宽度，不影响取值范围
+	5.2 浮点
+		FLOAT(m,n)：4个字节 精确到小数点后7位 DOUBLE(m,n)：8个字节 精确到小数点后15位 其中m为保存数字的总位数，n为小数点后的数字个数
+	5.3 日期与时间
+		DATE： 默认数据格式：YYYY-MM-DD TIME： 默认格式为：HH:MM:SS DATETIME：默认格式为：YYYY-DD-MM HH:MM:SS
+	5.4 字符
+		CHAR(n)：定长字符数据，n为最大字符长度，0~255 VARCHAR(n)：1~65535 TINYTEXT：1~65535 TEXT：1~2^16-1 MEDUYNTEXT：1~2^24-1 LONGTEXT：1~2^32-1
+	5.5 二进制
 		BLOB TINYBLOB MEDIUMBLOB LONGBLOB
-6 ��Сд����
-	a. �����ֹؼ��ִ�Сд
-	b. �����ݿ��е������Ǵ�Сд���е�
+6 大小写敏感
+	a. 不区分关键字大小写
+	b. 对数据库中的数据是大小写敏感的
 	
