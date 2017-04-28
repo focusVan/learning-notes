@@ -1,5 +1,5 @@
 Git Notes
-1.Git Basic
+1 Git Basic
 	1.1 Getting a Git Repository
 		1.1.1 Getting a Git Repository
 			a. inti repository£º cd E:/focus/my_repository ->git init
@@ -72,8 +72,53 @@ Git Notes
 		1.5.6 Removing and Renaming Remotes
 			a. git remote rename <remote-name> <new-name>
 			b. git remote remove <remote-name>
-			
-				
+	1.6 Tagging
+		1.6.1 Listing your Tags
+			a. git tag: This command lists tags in alphabetical order
+			b. git tag -l <pattern>: To search tags with particular pattern
+		1.6.2 Creating Tags
+			a. two main types of tags: lightweight(just a pointer a specific commit) and annotated
+		1.6.3 Annotated Tags
+			a. git tag -a <version> -m <annotation>: add a annotated tag
+			b. git show <version>: to show tagger infomation
+		1.6.4 Lightwight Tags
+			a. git tag <version>: add a lightweight tag
+		1.6.5 Tagging Later
+			a. git tag -a <version> checksum
+		1.6.6 Sharing Tags
+			a. git push origin <tagname>
+		1.6.7 Checking out Tags
+			a. git checkout -b <branchname> <tagname>
+	1.7 Git Aliases
+		1.7.1 Git Aliases
+			a. git config --global alias.<short> <full>
+2 Git Branching
+	2.1 Branches in a Nutshell
+		2.1.1 Branches in a Nutshell
+			a. it creates a snapshot when you commit. the snapshot contains a pointer to parents(when it has),a pointer to files summary and other messages. the summary contains pointers that points every file which has been changed.
+			b. branchs like master,branch just a pointer that points some snapshot.
+		2.1.2 Creating a New Branch
+			a. git branch <branchname>: This command creates a new pointer to the same commit you are currently on.Git keeps a special pointer called HEAD to the local branch you are currently on.git branch command only created a new branch - it did not switch to it
+		2.1.3 Switching Branches
+			a. git checkout <branchname>: switch branch
+			b. git log --oneline --decorate --graph --all
+	2.2 Basic Branching and Merging
+		2.2.1 Basic Braching
+			a. git merge <branchname>: merge branch
+			b. fast-forward merge: merge one commit with a commit that can be reached by following the first commit's history.
+			c. git branch -d <branchname>: delete branch locally.
+		2.2.2 Basic Merging
+			a. three-way merge: using the two snapshots pointed to by the branch tips and the common ancestor of the two.Git creates a new snapshot that results from this three-way merge and automatically creates a new commit that points to it. This is referred to as a merge commit, and is special in that it has more than one parent.
+		2.2.3 Basic Merge Conflict
+			a. If you changed the same part of the same file differently in the two branches.there should be conflicted
+			b. git mergetool: which fires up an appropriate visual merge tool and walks you through the conflicts
+	2.3 Branch Management
+		2.3.1 Branch Management
+			a. git branch -v: To see the last commit on each branch
+			b. git branch --merged/git branch --no-merged
+	2.4 Branching Workflows
+		2.4.1 Long-Running Branches
+			a. 
 		
 	
 	
