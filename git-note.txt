@@ -118,7 +118,7 @@ Git Notes
 			b. git branch --merged/git branch --no-merged
 	2.4 Branching Workflows
 		2.4.1 Long-Running Branches
-			a. 
+		2.4.2 Topic Branches
 		
 	
 	
