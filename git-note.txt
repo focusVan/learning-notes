@@ -117,8 +117,36 @@ Git Notes
 			a. git branch -v: To see the last commit on each branch
 			b. git branch --merged/git branch --no-merged
 	2.4 Branching Workflows
-		2.4.1 Long-Running Branches
-		2.4.2 Topic Branches
-		
-	
-	
+		2.4.1 Long-Running Branches： maintain a statable branch and a develop branch, when the develop branch ready,merge it into main branch.
+		2.4.2 Topic Branches: Try to solove progrem with more than one branches and merge one of the best into main branch and give up others.
+	2.5 Remote Branches
+		2.5.1 Remote Branches
+			a. git remote show [remote]: list remote references explictly.
+			b. git fetch [remote]: to synchronize your work
+			c. git remote add: to add a server as a new remote reference to the project you are currently working on.
+		2.5.2 Pushing
+			a. git push <remote> <branch>/git push <remote> <localbranch>:<remtebranch>
+			b. git merge origin/<remotebranch>
+		2.5.3 Tracking Branches
+			a. The branch it tracked is called "upstream branch",it have a direct relationship to a remote branch.
+			b. git checkout -b [branch] [remote][branch]: to track a remote branch
+			c. git checkout -u [remote]/[branch]
+			d. git branch -vv: to see tracking branches you have set up.
+			e. git fetch ==all: up to date ahead and behind numbers
+		2.5.4 Pulling
+			a. git pull: a command essentially git fetch immediately followed by a git merge
+		2.5.5 Deleting Remote Branches
+			a. git push [remote] --delete ] [branch]: to remove remote branch
+	2.6 Rebasing
+		2.6.1 The Basic Rebase
+			a. git checkout branchone->git rebase branchtwo: to take all the changes that were commited on branch one and replay them on branch two
+			b. git rebase --onto master server client: to take the client branch,figure out the patches since that it diverged from the server branch,and replay this patches inthe client branch as if it was based directly off the master branch instead.
+		2.6.2 The Perils of Rebasing
+			a. Do not rebase commits that exist outside your repository
+		2.6.3 Rebase When Your Rebase
+			a. git pull -> git rebase [server]/master
+			b. git pull --rebase
+			c. if you rebase commits that have never been available publicly,then you'll be fine.
+	2.7 Rebase VS Merge
+		2.7.1 Commit history is a record of what actually happened
+		2.7.2 Commit history is the story of how your project was made.
