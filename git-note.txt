@@ -163,5 +163,32 @@ Git Notes
 			a. git clone ssh://user@server/project.git or git clone user@user@server/project.git
 		3.1.4 The Git Protocal
 	3.2 Getting Git on a Server
-		
+		3.2.1 Create a new bare repository
+			a. git clone --bare my_project my_project.git
+		3.2.2 Putting the Bare Respository on a Server
+			a. scp -r my_project.git user@git.com:/srv/git
+			b. git clone user@git.com:/srv/git/my_project.git
+			c. git init --bare --shared: Git will automatically add group write permissions to a repository properly
+			d. To collaborate with a couple of people on a private project, all you need is an SSH server and a bare repository
+		3.2.3 Small Setups
+			a. Add users and set temporary passwords for every one
+			b. create a single git user on the mechine and ask every user who is to have write access to send you an SSH public key and add that key to the ~/.ssh/authorized_keys file of your new git user.	3.2.1 Create a new bare repository
+				a. git clone --bare my_project my_project.git
+			3.2.2 Putting the Bare Respository on a Server
+				a. scp -r my_project.git user@git.com:/srv/git
+				b. git clone user@git.com:/srv/git/my_project.git
+				c. git init --bare --shared: Git will automatically add group write permissions to a repository properly
+				d. To collaborate with a couple of people on a private project, all you need is an SSH server and a bare repository
+			3.2.3 Small Setups
+				a. Add users and set temporary passwords for every one
+				b. create a single git user on the mechine and ask every user who is to have write access to send you an SSH public key and add that key to the ~/.ssh/authorized_keys file of your new git user.	3.2.1 Create a new bare repository
+					a. git clone --bare my_project my_project.git
+				3.2.2 Putting the Bare Respository on a Server
+					a. scp -r my_project.git user@git.com:/srv/git
+					b. git clone user@git.com:/srv/git/my_project.git
+					c. git init --bare --shared: Git will automatically add group write permissions to a repository properly
+					d. To collaborate with a couple of people on a private project, all you need is an SSH server and a bare repository
+				3.2.3 Small Setups
+					a. Add users and set temporary passwords for every one
+					b. create a single git user on the mechine and ask every user who is to have write access to send you an SSH public key and add that key to the ~/.ssh/authorized_keys file of your new git user.
 
