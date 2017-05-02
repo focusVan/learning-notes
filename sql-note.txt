@@ -60,7 +60,22 @@ SQL Note
 	8.3 单列索引
 		使用KEY或INDEX关键字为某列定义单列索引
 	8.4 复合索引
-		为一个数据表的多个数据列创建索引，如INDEX(colum1,colum2)，最左前列有用
+		为一个数据表的多个数据列创建索引，如CREATE INDEX i_indexname ON tablename(colum1,colum2 ASC)
 	8.5 聚簇索引
 		聚簇索引的索引项的顺序与数据表中的数据记录的物理顺序保持一致
+9 修改数据库中的表
+	9.1 增加一列
+		ALTER TABLE table_name ADD(column_name datatype[constrait_condition])
+	9.2 增加一个约束条件
+		ALTER TABLE table_name ADD constraint_type(column_name): ALTER TABLE table_name ADD PRIMARY KEY(column_name),ALTER TABLE table_name ADD FOREIGN KEY(key_name) REFFERENCES refer_table(refer_column)
+	9.3 增加一个索引
+		ALTER TABLE table_name ADD INDEX i_indexname(column1[,column2])
+	9.4 修改表中的某一列
+		ALTER TABLE table_name MODIFY column_name datatype: ALTER TABLE table_name MODIFY sex CHAR(2)
+	9.5 删除表中的一列
+		ALTER TABLE table_name DROP column_name
+	9.6 删除一个约束条件
+		ALTER TABLE table_name DROP constraint_type(一种类型的约束条件只能有一个？)
+	9.7 删除表
+		DROP TABLE table_name[CASCADE CONSTRAINTS]
 
