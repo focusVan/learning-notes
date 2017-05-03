@@ -126,6 +126,41 @@ SQL Note
 			a. COUNT，SUM，AVG: 可以使用DISTINCT去除指定列中的重复项，SUM和AVG表达式中只能是数字类型，除了COUNT(*)之外，其他的几个函数在计算时都忽略NULL行，COUNT(列表达式):统计非空行数
 			b. MAX,MIN: 列可以为数字，字符，日期类型
 			c. 聚合函数一般和GROUP BY子句在一起使用，且只能出现在SELECT语句，GROUP子句和HAVING子句中
-
-		
-	
+		10.7.5 多列分组
+			a. 如果SELECT语句中同时含有数据列和聚合函数，那么必须使用GROUP BY子句进行分组操作，且GROUP BY子句必须出现所有选择列
+			b. HAVING字句用来限制分组后的查询结果：GROUP BY 列名1[,列名2...] HAVING 条件表达式，可以使用SELECT语句中没有出现的列
+			c. 对分组结果进行排序，通常ORDER BY子句中会用到聚合函数	，GROUP BY将所有分组列为NULL的归为一组且NULL值最小
+		10.7.6 使用ROLLUP关键字统计数据
+			a. ROLLUP: 对分组后的数据做阶段性的操作（相当于小计），并且可以对查询出来的所有记录的数据做一个最终操作（相当于总计）,放在GROUP BY子句后面：GROUP BY columnName WITH ROLLUP
+		10.7.7 限制结果集行数
+			a. LIMIT offset,n: 查询MYSQL中从数据表中第offset+1条开始的记录，并返回n条
+	10.8 连接查询与集合查询
+		10.8.1 内连接查询
+			a. 等值连接：用“=”号连接或者INNER JOIN，前者使用WHERE子句AND其他条件时，表示两表相关联的列应该放在前面，以提高效率，如 SELECT a.id,b.id,a.name FROM A a,B b WHERE a.id=b.id AND a.name='test'
+			b. 非等值连接： 使用除“=”号外的其他运算符或者BETWEEN...AND（单独使用一般没有意义）
+			c. 使用USING子句建立等值连接：SELECT A.column,B.column FROM A JOIN B USING(column)
+		10.8.2 交叉连接
+			a. 结果为笛卡尔积，在进行连接查询时未指定WHERE条件即为交叉连接（使用CROSS　JOIN也是交叉连接），通常无用
+		10.8.3 自连接查询
+			a. SELECT C2.curName,C2.credit FROM T_curriculum C1,T_curriculum C2 WHERE C1.curName='操作系统' AND C2.credit>C1.credit 查询T_curriculum表中学分大于操作系统学分的课程
+		10.8.4 外连接
+			a. 左外连接：包括左侧表中不满足查询条件的记录（列出左侧表中的所有记录）SELECT * FROM t1 LEFT JOIN t2 ON t1.id=t2.id OR SELECT * FROM t1 LEFT JOIN t2 USING(
+			b. 右外连接
+			c. 全外连接
+		10.8.5 集合查询
+			a. 并操作：SELECT 语句1 UNION SELCT 语句2,需要保证语句1和语句2查询出的列数必须相同而且对应列的数据类型必须相同，合并两个查询不重复的所有行
+	10.9 子查询	10.8.5 集合查询
+		a. 并操作：SELECT 语句1 UNION SELCT 语句2,需要保证语句1和语句2查询出的列数必须相同而且对应列的数据类型必须相同，合并两个查询不重复的所有行
+10.9 子查询	10.8.5 集合查询
+	a. 并操作：SELECT 语句1 UNION SELCT 语句2,需要保证语句1和语句2查询出的列数必须相同而且对应列的数据类型必须相同，合并两个查询不重复的所有行10.9 子查询	10.8.5 集合查询
+		a. 并操作：SELECT 语句1 UNION SELCT 语句2,需要保证语句1和语句2查询出的列数必须相同而且对应列的数据类型必须相同，合并两个查询不重复的所有行
+10.9 子查询	10.8.5 集合查询
+	a. 并操作：SELECT 语句1 UNION SELCT 语句2,需要保证语句1和语句2查询出的列数必须相同而且对应列的数据类型必须相同，合并两个查询不重复的所有行10.9 子查询	10.8.5 集合查询
+		a. 并操作：SELECT 语句1 UNION SELCT 语句2,需要保证语句1和语句2查询出的列数必须相同而且对应列的数据类型必须相同，合并两个查询不重复的所有行
+10.9 子查询	10.8.5 集合查询
+	a. 并操作：SELECT 语句1 UNION SELCT 语句2,需要保证语句1和语句2查询出的列数必须相同而且对应列的数据类型必须相同，合并两个查询不重复的所有行10.9 子查询	10.8.5 集合查询
+		a. 并操作：SELECT 语句1 UNION SELCT 语句2,需要保证语句1和语句2查询出的列数必须相同而且对应列的数据类型必须相同，合并两个查询不重复的所有行
+10.9 子查询	10.8.5 集合查询
+	a. 并操作：SELECT 语句1 UNION SELCT 语句2,需要保证语句1和语句2查询出的列数必须相同而且对应列的数据类型必须相同，合并两个查询不重复的所有行10.9 子查询	10.8.5 集合查询
+		a. 并操作：SELECT 语句1 UNION SELCT 语句2,需要保证语句1和语句2查询出的列数必须相同而且对应列的数据类型必须相同，合并两个查询不重复的所有行
+10.9 子查询
