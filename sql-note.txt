@@ -113,5 +113,19 @@ SQL Note
 			h. {m}: 数字m表示花括号钱的字符串需要出现m次
 			SELECT * FROM T_student WHERE stuName REGEXP '^王'
 	10.7 排序和分组
+		10.7.1 指定某列进行排序
+			a. 默认升序ASC，降序为DESC，不能用在子查询的SELECT语句中
+			b. 如果SELECT语句中有多个子句（如WHERE子句，GROUP子句，HAVING子句），ORDER BY子句作为最会一条子句出现
+		10.7.2 指定表中列的位置序号进行排序
+			a. SELECT * FROM T_teacher ORDER BY 5 DESC
+			b. 使用UNION，MINUS等集合操作时，比较好用
+		10.7.3 指定多列进行排序
+			a. 根据ORDER子句的列顺序依次进行排序，如果前列有重复，重复的列按后列排序
+			b. SELECT * FROM T_teacher ORDER BY dept ASC,salary DESC
+		10.7.4 常用聚合函数
+			a. COUNT，SUM，AVG: 可以使用DISTINCT去除指定列中的重复项，SUM和AVG表达式中只能是数字类型，除了COUNT(*)之外，其他的几个函数在计算时都忽略NULL行，COUNT(列表达式):统计非空行数
+			b. MAX,MIN: 列可以为数字，字符，日期类型
+			c. 聚合函数一般和GROUP BY子句在一起使用，且只能出现在SELECT语句，GROUP子句和HAVING子句中
+
 		
 	
