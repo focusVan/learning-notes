@@ -50,7 +50,7 @@ SQL Note
 	7.3 索引
 		a. 索引是一个指向数据表中数据的指针，指向索引字段在数据表中的物理字段。
 	7.4 约束
-		a. 表的约束：唯一约束（UNIQUE 可以为空,Mysql为列的唯一约束建立一个唯一索引，索引名和约束名相同），主键约束（唯一且不为空,PRIMARY KEY，Mysql为建立列级主键同时建立一个主索引，索引名和约束名相同），外键约束(FOREIGN KEY，删除和修改的方式：CASCADE，SET Null，RESTRICT-系统报错，从表中相应数据不会删除)，检查约束（CHECK,保证数据规则的一致性），非空约束(NOT NULL)
+		a. 表的约束：唯一约束（UNIQUE 可以为空,Mysql为列的唯一约束建立一个唯一索引，索引名和约束名相同），主键约束（唯一且不为空,PRIMARY KEY，Mysql为建立列级主键同时建立一个主索引，索引名和约束名相同），外键约束(FOREIGN KEY，删除和修改的方式：CASCADE，SET Null，RESTRICT-系统报错，从表中相应数据不会删除)，检查约束（CHECK,保证数据规则的一致性），非空约束(10NOT NULL)
 		
 8 索引分类：
 	8.1 唯一索引
@@ -63,7 +63,7 @@ SQL Note
 		为一个数据表的多个数据列创建索引，如CREATE INDEX i_indexname ON tablename(colum1,colum2 ASC)
 	8.5 聚簇索引
 		聚簇索引的索引项的顺序与数据表中的数据记录的物理顺序保持一致
-9 修改数据库中的表
+9 修改数据库中的表(ALTER TABLE)
 	9.1 增加一列
 		ALTER TABLE table_name ADD(column_name datatype[constrait_condition])
 	9.2 增加一个约束条件
@@ -77,5 +77,41 @@ SQL Note
 	9.6 删除一个约束条件
 		ALTER TABLE table_name DROP constraint_type(一种类型的约束条件只能有一个？)
 	9.7 删除表
-		DROP TABLE table_name[CASCADE CONSTRAINTS]
-
+		DROP TABLE table_name[CASCADE CONSTRAINTS],CASCADE CONSTRAINTS:级联删除从表中的外键约束
+10 数据查询
+	10.1 对查询的记录进行算术运算
+		SELECT salary*12 AS 年收入 FROM T_teacher
+	10.2 连接字段（只能连接类型相同的字段）
+		SELECT stuID,CONCAT(stuName,sex) FROM T_student
+	10.3 比较查询
+		10.3.1 算术比较运算符
+			<>(不等于），!<(不小于），!>(不大于），!=(不等于），WHERE子句中比较的是数值类型，则可以不使用单引号，如果比较的是其他类型，如日期，字符串，则必须使用单引号。
+		10.3.2 BETWEEN...AND
+		10.3.3 IN运算符
+			字段1 IN(属性值1，属性值2，属性值3...)，如果属性值为字符类型，则需要加单引号
+		10.3.4 字符串比较
+			a. 使用比较运算符进行比较(应该使用大小写转换函数UPPER LOWER转换后进行比较），其实并不区分大小写
+			b. 使用BINARY关键字对字符串进行二进制比较(比较时可以区分大小写): string1 比较运算符 BINARY string2
+		10.3.5 日期时间比较
+			比较日期和时间值需要使用单引号(DATE_FORMAT可以将日期转换为需要的形式)
+	10.4 逻辑查询
+		 NOT>AND>OR(优先级关系)
+	10.5 空值查询	
+		属性表的行属性没有任何数据记录：IS NULL or IS NOT NULL,用比较运算符对NULL值进行比较，始终为FALSE，不会返回任何结果
+	10.6 模糊查询
+		10.6.1 匹配任意单个字符：通配符"_"
+		10.6.2 匹配0个或多个字符：通配符“%”
+		10.6.3 使用转义字符：在ESCAPE后指定转义字符：LIKE ‘%$_%’ ESCAPE '$'
+		10.6.4 使用REGEXP关键字进行模式匹配
+			a. ^: 用来匹配字符串的开始
+			b. $: 用来匹配字符串的结尾
+			c. []: 匹配方括号内任意某个字符或字符串
+			d. -: 匹配字符的范围
+			e. +: 至少出现一次或多次
+			f. *: 至少出现零次或多次
+			g. (): 圆括号中的内容将被看做一个整体
+			h. {m}: 数字m表示花括号钱的字符串需要出现m次
+			SELECT * FROM T_student WHERE stuName REGEXP '^王'
+	10.7 排序和分组
+		
+	
