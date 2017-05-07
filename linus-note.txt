@@ -19,5 +19,26 @@ Linux学习笔记
 	e.less 与more类似，但可以往前翻页 ?string 向上查询 [PageUp]为向上翻页
 	f.head 只看头几行 -n
 	g.tail 只看结尾几行 -n
-	h.od 以二进制的方式读取文件内容 
+	h.od 以二进制的方式读取文件内容
+4.为用户配置sudo权限
+	a. 用root编辑 vi /etc/sudoers 为focus添加一行 focus   ALL=(ALL)  ALL然后focus可以用sudo来执行系统级别的操作
+5.系统相关命令
+	a.查看和修改主机名: hostname(会话） 或者 vi /etc/sysconfig/network
+	b.修改IP: ifconfig eth0 [ip] 或者 vi /etc/sysconfig/network-scripts/ifcfg-eth0
+	c.日期和日历: date +%Y-%m-%d  cal 2017
+	e.挂载: mount umount
+	f.查看文件大小: du -h,du -ah  查看分区: df -h 统计文件或文件夹的大小du -sh file/dir
+	g.关机:halt，重启:reboot
+6.ssh相关
+	6.1 登录到远程服务器:ssh ip
+	6.2 复制文件到远程目录: scp finename user@ip:path
+	6.3 ssh身份验证机制: 用户名+密码验证 或者  密钥验证
+	6.4 密钥验证
+		a.生成公钥(个人身份标识A)和私钥(ssh-keygen,默认存在/root/.ssh目录下)，将公钥拷贝给B
+		b.B将A的公钥加入到授权列表(authorized_keys)，ssh-copy-id [ip]
+		c.B利用公钥加密随机字符串发送给A
+		d.A利用私钥解密B加密过的随机字符串并返回给B
+		e.B验证随机字符串
+		
+
 	
