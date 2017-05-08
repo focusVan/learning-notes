@@ -183,4 +183,26 @@ SQL Note
 		k. ASCII(string): 返回字符串最左字符的ASCII码，空字符返回0；NULL值返回NULL
 		l. CHR(N): 返回指定ASCII码对应的字符
 	10.2 数字函数
-		a. 
+		a. 求绝对值: ABS(n)
+		b. 求幂: POWER(n,m),EXP(n)，以e为底的幂
+		c. 求对数: LOG(n),自然对数，LOG10(n)，以10为底的对数
+		d. 四舍五入: ROUND(n[,m]),m>0,精确到小数点右边m位；m<0,精确到小数点左边m位，此时，若m>=n，结果为0；m=0,省略小数
+		e. 求余数: MOD(n,m),m=0,返回0
+		f. 求大于指定数的最小正数: CEIL(n); 求小于指定数的最大正数: FLOOR(n)
+		g. 截取: TRUNC(n[,m])
+	10.3 日期时间函数
+		a. 返回当前日期和时间: NOW(), SYSDATE, CURRENT_DATE+CURRENTTIME
+		b. 对日期值进行加减运算: DATE_ADD(date,INTERVAL expression type): expression为需要加减的值，type为类型，如YEAR，MONTH
+		c. 取得指定日期所在月的最后一天: LAST_DAY(date)
+		d. 对日期进行四舍五入: ROUND(date[,fmt]),fmt为“YYYY"等，若为年份，临界点为7月1日，月份为16号，天为12:00AM
+		e. 截断日期:TRUNC(date[,fmt])
+	10.4 类型转换函数
+		a. CAST(expression AS datatype[length]): expression为要转换的数据类型表达式，datatype为要转换的数据类型
+	10.5 日期格式转换
+		a. DATE_FORMAT(date,fmt)
+	10.6 空值处理
+		a. IFNULL(expression1,expression2)
+	10.7 分支函数
+		10.7.1 CASE条件表达式
+			a. 通过单一条件表达式进行等值比较: CASE expression WHEN value1 THEN result1 [WHEN value2 THEN result2...] [ELSE defalt_result] END
+		
