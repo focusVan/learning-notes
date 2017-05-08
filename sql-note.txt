@@ -238,3 +238,16 @@ SQL Note
 	13.3 回收权限
 		13.3.1 REVOKE 权限[,权限] ON TABLE 表名[,表名] FROM 用户[,用户]
 14 事务的控制与管理	
+	14.1 开始事务
+		a. 显示开始一个新事务: START TRANSACTION [事务名]
+		b. 隐式开始一个事务
+	14.2 提交事务
+		a. 显示提交: COMMIT[事务名]
+		b. 隐式提交: 通过SQL语句就可以完成事务的提交
+		c. 自动提交: SET AUTOCOMMIT=1/SET AUTOCOMMIT ON
+	14.3 回滚事务
+		a. ROLLBACK [TO 保存点]
+	14.4 设置事务的隔离级别
+		a. 为一个事务设置隔离级别:SET TRANSACTION ISOLATION LEVEL 隔离级别
+		b. 为一个会话中的事务设置隔离级别: SET SESSION TRANSCTION LEVEL [READ UNCOMMITED|READ COMMITED|REPEATABLE READ|SERIALIZABLE]
+15
