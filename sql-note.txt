@@ -204,5 +204,37 @@ SQL Note
 		a. IFNULL(expression1,expression2)
 	10.7 分支函数
 		10.7.1 CASE条件表达式
-			a. 通过单一条件表达式进行等值比较: CASE expression WHEN value1 THEN result1 [WHEN value2 THEN result2...] [ELSE defalt_result] END
-		
+			a. 通过单一条件表达式进行等值比较: CASE expression WHEN value1 THEN result1 [WHEN value2 THEN result2...] [ELSE defalt_result] END 相当于swith
+			b. 多种条件比较: CASE WHEN condition1 THEN result1 [WHEN condition2 THEN result2...] [ELSE default_result] END
+11 视图
+	作用：提高数据访问的安全性和为复杂查询操作带来方便
+	a. CREATE VIEW view_name([column_name][,column_name2]) AS subquary WITH CHECK OPTION, WITH CHECK OPTION表示对创建的试图添加CHECK约束条件，当视图执行数据的增加，修改和删除等更新操作时，会对其做条件检查
+	b. 创建只读视图: CREATE VIEW view_name([column_name1][,column_name2]) AS subquary WITH READ ONLY
+12 数据更新
+	12.1 插入 INSERT INTO
+		12.1.1 插入单行: INSERT INTO table_name[(column_name],column_name2...)] VALUES(value1[,value2]...)
+		12.1.2 向定义有外键约束的表中插入数据: 插入的数据记录需要满足外键约束体条件
+		12.1.3 使用子查询插入多行数据实现表中数据的复制: INSERT INTO table_name[(column_name1,column_name2...)] subquery
+	12.2 修改 UPDATE SET
+		12.2.1 修改单行: UPDATE table_name SET column_name1=value1[,cloumn_name2=value2] WHERE condition
+		12.2.2 使用子查询修改数据记录: UPDATE table_name SET subquery WHERE condition,如 UPDATE T_curriculum SET(learnTime,credit)=(SELECT learnTime,credit FROM T_curriculum WHERE curName='C') WHERE curName='操作系统'
+		12.2.3 使用CASE条件表达式修改多行记录: UPDATE T_salary SET salary = CASE WHEN salary<=3000 THEN salary+salary*0.1 WHEN salary>300 AND salary<=4000 THEN salary+salary*0.08 ELSE salary END
+
+	12.3 删除 DELETE
+		12.3.1 DELETE FROM table_name WHERE condition
+		12.3.2 使用子查询删除指定条件的数据记录: DELETE table_name WHERE subquery,DELETE FROM T_result WHERE curID=(SELECT c.curID FROM T_curriclumn c WHERE c.curName='C') AND stuID='s12'
+		12.3.3 使用TRUNCATE删除数据表中的所有记录: TRUNCATE TABLE table_name,删除所有记录，但是会保留表的结构和约束；DELETE删除之前会写日志，TRUNCATE不会，DELETE是一行一行的删，速度较慢，TRUNCATE是一次性将与数据表有关的所有记录删除，速度快
+13 数据控制
+	13.1 数据库及不同对象允许的操作权限
+		a. 数据表: SELECT,INSERT,UPDATE,DELETE,ALTER,INDEX,ALLPRIVIEGES
+		b. 视图: SELECT,INSERT,UPDATE,DELETE,ALLPRIVIEGES
+		c. 数据列: SELECT,INSERT,UPDATE,DELETE,ALLPRIVIEGES
+		d. 数据库: CREATETAB
+	13.2 授予权限
+		13.2.1 授予指定用户操作数据表的权限: GRANT 权限[,权限] ON TABLE 表名[,表名] TO 用户[,用户]
+		13.2.2 授予指定用户操作数据列的权限: GRANT 权限(列名[,列名]) ON TABLE 表名[,表名】 TO 用户[,用户]
+		13.2.3 允许用户将得到的权限授予他人: WITH GRANT OPTION
+		13.2.4 授予创建数据库的权限: GRANT CRATETAB ON DATABASE DBname TO 用户
+	13.3 回收权限
+		13.3.1 REVOKE 权限[,权限] ON TABLE 表名[,表名] FROM 用户[,用户]
+14 事务的控制与管理	
