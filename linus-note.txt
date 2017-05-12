@@ -39,6 +39,24 @@ Linux学习笔记
 		c.B利用公钥加密随机字符串发送给A
 		d.A利用私钥解密B加密过的随机字符串并返回给B
 		e.B验证随机字符串
-		
+7.VMWare虚拟机网络配置
+	a. vi /etc/sysconfig/network  添加网关:GATEWAY=<IP>
+	b. vi /etc/sysconfig/network-scripts/ifcfg-eth0配置：IPADDR=<IP>,BOOTPROTO=static,NETMASK=255.255.255.0,ARPCHECK=no,ONBOOT=yes
+	c. 配置vmnet8，网关同于新建虚拟机的网关，DNS同于网关地址，IP和虚拟机在一个子网里
+	d. vi /etc/resolv.conf 配置域名服务器为 网关地址(识别子网的虚拟机)和114.114.114.114(识别外网域名)
+	e. VMWare网关地址的查询：编辑->虚拟网络编辑器->vmnet8的NAT设置
+	f. service network restart
+8.linux的jdk配置
+	a. 拷贝jdk.tar.gz到/usr/local/
+	b. tar -zxvf jkd.tar.gz
+	c. vi /etc/profile  添加export JAVA_HOME=/usr/local/jdk, export PATH=$PATH:$JAVA_HOME/bin
+	d. 刷新环境变量:source /etc/profile
+	e. 测试: java -version
+9.tomcat配置
+	a. 拷贝tomcat.tar.gz到/usr/local
+	b. tar -zxvf tomcat.tar.gz
+	c. 启动tomcat: /usr/local/tomcat/bin/startup.sh
+	d. 查看tomcat是否启动:jps(Bootstrap)
+	e. 查看tomcat端口: netstat -anpt | grep java
 
 	

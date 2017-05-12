@@ -51,9 +51,9 @@ Git Notes
 	1.4 Undoing Things
 		1.4.1 Undoing Things
 			a. git commit -amend: This command will commit files that you forgot and use the same snapshot with the last commit
-		1.4.2 Unstaging a Staged File
+		1.4.2 Unstaging a Staged File(git commit)
 			a. git reset HEAD FILE This command will unstage a staged file
-		1.4.5 Unmodedifying a Modefied: File
+		1.4.5 Unmodedifying a Modefied File(git add)
 			a. git checkout -- FILE: This command revert changes
 	1.5 Working with Remotes
 		1.5.1 Showing your Remotes
@@ -191,4 +191,3 @@ Git Notes
 				3.2.3 Small Setups
 					a. Add users and set temporary passwords for every one
 					b. create a single git user on the mechine and ask every user who is to have write access to send you an SSH public key and add that key to the ~/.ssh/authorized_keys file of your new git user.
-	3.3 
