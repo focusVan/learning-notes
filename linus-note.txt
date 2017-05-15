@@ -189,4 +189,13 @@ Linux学习笔记
 	a. 压缩:gzip <filename> 解压缩:gzip -d <filename.gz>
 	b. 打包:tar -cvf <filename.tar> /somefile 解包:tar -xvf filename.tar
 	c. 一次性解决: tar -zcvf filename.tar.gz /filename 和 tar -xcvf finaname.tar.gz
-
+15.制作本地yum源
+	a. 将iso包挂载到某个目录下: mount -t iso9660 -o ro /dev/cdrom /mnt/cdrom
+	b. 修改本机yum源配置文件使其指向自己，且备份原有yum源: cd /etc/yum.repos.d; cp somefile.repo CentOS-Local.repo; vi CentOS-Local.repo->beseurl=file:///mnt/cdrom;enabled=1
+	c. 清除YUM缓冲: yum clean all
+	d. 列出可用YUM源: yum repolist
+	e. 安装相应软件: yum install -y httpd
+	f. 开启httpd: service httpd start
+	g. 将yum源配置到httpd中，cp -r /mnt/cdrom /var/www/html/CenOS-6.7
+	h. 取消先前挂载的镜像 umount /mnt/cdrom
+	i. 关闭防火墙: service iptables stop
