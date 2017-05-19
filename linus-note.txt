@@ -247,4 +247,17 @@ Linux学习笔记
 		b. 调用函数之前必须先声明
 		c. 函数返回值，只能通过$?
 	18.19 脚本调试：sh -vx name.sh 或者在脚本中增加set -x 
-	
+	18.20 高级命令行文本处理
+		a. cut 从一个文本文件或者文本流提取列，分割之后从1开始，如 echo $PATH | cut -d ':' -f 3,5[3-]
+		b. sort 排序 如 cat /etc/passwd | sort -t ':' 3 按分割之后的第三列的字典顺序排列；sort -t ':' 7 -u 排序并去重
+		c. uniq 去重，只能去重排序过得文本(按行)
+		d. wc 统计 -l 统计行 -w 统计word -m 统计字符数
+		e. sed 
+			1. d命令，删除 sed '2d' example：删除文件第二行，只是处理，原文件不变；sed '/test/'d example： 删除包含test的行
+			2. s命令，替换 sed ‘s/test/mytest/g’ example,g 表示全局；sed 's/^fo/&cus/',&表示追加
+		f. awk 
+			1. awk '{print $1}'，默认以空格，tab分割
+			2. awk -F ':' "{print $1\t$7}"
+			3. awk -F ':' 'BEGIN action1 END action2'
+19 大型网站架构简述
+	nginx是静态web服务器，有代理的功能，可以做复杂均衡；静态资源放在nginx里，动态资源放在tomcat（如action）,其中公共（公共service）服务可以放在定制服务器；dubbo可以查询哪台服务器可用，可以做负载均衡（服务器启动回向dubbo注册）；action调用公共服务器用RPC调用（dubbo里有封装），mycat代理数据库（分库分表和读写分离的封装，一致性哈希），mycat上可以添加redis做缓存，nigix和用户之间还有cdn服务器，部署在全国各地，主要存静态资源，动态资源cdn会转发；cdn服务器由运营商在搞，可以租用,为了保证nginx高可用，可以用keeplived，keeplived有心跳的概念
