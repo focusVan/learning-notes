@@ -35,7 +35,7 @@ Http 详解
 	7.2 HTTP/1.1
 		在一个TCP连接中可以传送多HTTP请求和响应；不需要等待上次HTTP响应完毕，可以多可以多个HTTP请求同时进行，服务器会根据浏览器的发送请求顺序来按顺序进行响应，即管线；有Host域，可以建立虚拟主机
 8. 请求消息
-	结构：状态行+若干消息头（可选）+CRLF+实体内容（可选）
+	结构：状态行（请求行）+CRLF+若干消息头（消息报头）（可选）+空行+实体内容（可选）
 9. 响应消息
 	对于HTTP/1.1,如果消息中包括实体内容，且没有采用Transfer-Encoding:chunked传输编码方式，则必须有Content-Length消息头，否则浏览器和服务器都不知道合适消息结束
 10. HTTP消息头概述
@@ -48,7 +48,7 @@ Http 详解
 	b. 请求方式
 		1. GET：请求获取Request-URI所标识的资源
 		2. POST：在Request-URI所标识的资源后添加新数据
-		3. HEAD：请求Request-URI所标识的资源的响应消息抱头
+		3. HEAD：请求Request-URI所标识的资源的响应消息报头
 		4. PUT：请求服务器存储一个资源，并用Request-URI作为资源标识
 		5. DELETE：请求服务器删除Request-URI所标识的资源
 		6. TRACE：请求服务器会送收到的请求信息，主要用于测试个诊断
@@ -158,80 +158,8 @@ Http 详解
 	1.请求（TCP SYN）
 	2.确认+请求（TCP SYN+ACK）
 	3.确认（TCP ACK）
-21 20 TCP三次握手
-	1.请求（TCP SYN）
-	2.确认+请求（TCP SYN+ACK）
-	3.确认（TCP ACK）
-21 20 TCP三次握手
-	1.请求（TCP SYN）
-	2.确认+请求（TCP SYN+ACK）
-	3.确认（TCP ACK）
-21 20 TCP三次握手
-	1.请求（TCP SYN）
-	2.确认+请求（TCP SYN+ACK）
-	3.确认（TCP ACK）
-21 20 TCP三次握手
-	1.请求（TCP SYN）
-	2.确认+请求（TCP SYN+ACK）
-	3.确认（TCP ACK）
-21 20 TCP三次握手
-	1.请求（TCP SYN）
-	2.确认+请求（TCP SYN+ACK）
-	3.确认（TCP ACK）
-21 20 TCP三次握手
-	1.请求（TCP SYN）
-	2.确认+请求（TCP SYN+ACK）
-	3.确认（TCP ACK）
-21 20 TCP三次握手
-	1.请求（TCP SYN）
-	2.确认+请求（TCP SYN+ACK）
-	3.确认（TCP ACK）
-21 20 TCP三次握手
-	1.请求（TCP SYN）
-	2.确认+请求（TCP SYN+ACK）
-	3.确认（TCP ACK）
-21 20 TCP三次握手
-	1.请求（TCP SYN）
-	2.确认+请求（TCP SYN+ACK）
-	3.确认（TCP ACK）
-21 20 TCP三次握手
-	1.请求（TCP SYN）
-	2.确认+请求（TCP SYN+ACK）
-	3.确认（TCP ACK）
-21 20 TCP三次握手
-	1.请求（TCP SYN）
-	2.确认+请求（TCP SYN+ACK）
-	3.确认（TCP ACK）
-21 20 TCP三次握手
-	1.请求（TCP SYN）
-	2.确认+请求（TCP SYN+ACK）
-	3.确认（TCP ACK）
-21 20 TCP三次握手
-	1.请求（TCP SYN）
-	2.确认+请求（TCP SYN+ACK）
-	3.确认（TCP ACK）
-21 20 TCP三次握手
-	1.请求（TCP SYN）
-	2.确认+请求（TCP SYN+ACK）
-	3.确认（TCP ACK）
-21 20 TCP三次握手
-	1.请求（TCP SYN）
-	2.确认+请求（TCP SYN+ACK）
-	3.确认（TCP ACK）
-21 20 TCP三次握手
-	1.请求（TCP SYN）
-	2.确认+请求（TCP SYN+ACK）
-	3.确认（TCP ACK）
-21 20 TCP三次握手
-	1.请求（TCP SYN）
-	2.确认+请求（TCP SYN+ACK）
-	3.确认（TCP ACK）
-21 20 TCP三次握手
-	1.请求（TCP SYN）
-	2.确认+请求（TCP SYN+ACK）
-	3.确认（TCP ACK）
-21 20 TCP三次握手
-	1.请求（TCP SYN）
-	2.确认+请求（TCP SYN+ACK）
-	3.确认（TCP ACK）
-21 
+21 解决HTTP无状态问题
+	21.1 通过Cookied保存状态信息
+	21.2 通过Session保存状态信息
+		a. 使用Cookie来实现
+		b. 使用URL回写来实现
