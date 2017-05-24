@@ -199,6 +199,7 @@ Linux学习笔记
 	g. 将yum源配置到httpd中，cp -r /mnt/cdrom /var/www/html/CenOS-6.7
 	h. 取消先前挂载的镜像 umount /mnt/cdrom
 	i. 关闭防火墙: service iptables stop
+	e. 将其他机器的/etc/yum.repos.d的某个.repo文件的baseurl指向http服务
 16.查看系统中的rpm包
 	a. rpm -qa | grep mysql
 	b. 查看端口: netstat -nltp
@@ -261,3 +262,6 @@ Linux学习笔记
 			3. awk -F ':' 'BEGIN action1 END action2'
 19 大型网站架构简述
 	nginx是静态web服务器，有代理的功能，可以做复杂均衡；静态资源放在nginx里，动态资源放在tomcat（如action）,其中公共（公共service）服务可以放在定制服务器；dubbo可以查询哪台服务器可用，可以做负载均衡（服务器启动回向dubbo注册）；action调用公共服务器用RPC调用（dubbo里有封装），mycat代理数据库（分库分表和读写分离的封装，一致性哈希），mycat上可以添加redis做缓存，nigix和用户之间还有cdn服务器，部署在全国各地，主要存静态资源，动态资源cdn会转发；cdn服务器由运营商在搞，可以租用,为了保证nginx高可用，可以用keeplived，keeplived有心跳的概念
+20. 可以为一张网卡配置两个IP
+21. 开机自动挂载光盘
+	vi /etc/fstab 添加 /dev/cdrom   /mnt/cdrom    iso9660  defaults  0 022. 建立链接  ln -s centos  /mnt/cdrom
