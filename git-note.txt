@@ -24,7 +24,7 @@ Git Notes
 			a. .gitignore: simplified regular expressions that shells use
 		1.2.7 Viewing Your Staged and Unstaged Changes
 			a. git diff: To see what you have changed but not yet staged,type git diff with no other arguments.
-			b. To see what you have staged that will go into next commit: git diff -staged. this command compares your staged changes to your last commit.
+			b. To see what you have staged that will go into next commit: git diff --staged. this command compares your staged changes to your last commit.
 		1.2.8 Committing Your Changes
 			a. git commit -m MESSAGE
 			b. git commit -v diff
