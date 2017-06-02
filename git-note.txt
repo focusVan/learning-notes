@@ -7,7 +7,7 @@ Git Notes
 		1.1.2 Cloning an Existing Repository
 			a. git clone: Git receives a full copy of nearly all data that the server has, Every version of every file for the history of the project is pulled down by default when you run git clone
 			b. git clone URL or git clone user@server:path/to/repo.git(useing SSH transfer protocal)
-	1.2 Recording Chages to the Repository
+	1.2 Recording Changes to the Repository
 		1.2.1 Recording Changes to the Repository
 			a. two states: tracked or untracked. Tracked files:files that were in the last snapshot,can be unmodified,modified or staged. Untracked files: everything else(not int your last snapshot and not in your staging area)
 			b. flows: Untracked file --(add the file) -> Staged. Unmodified --(edit the file)-> Modified --(stage the file)->Staged. Staged--(commit)->Unmodified--(remove the file)->Untracked.
