@@ -27,11 +27,10 @@ Git Notes
 			b. To see what you have staged that will go into next commit: git diff --staged, this command compares your staged changes to your last commit.
 		1.2.8 Committing Your Changes
 			a. git commit -m MESSAGE
-			b. git commit -v diff
 		1.2.9 Skipping the Staging Area
 			a. git commit -a (Making Git automatically stage every file that is already tracked before doing the commit)
 		1.2.10 Removing Files
-			a. git rm FILE: To remove a file from Git and all remove it from woking directory(remove it from staging area and than commit),not be listed in git status
+			a. git rm FILE: To remove a file from Git and also remove it from woking directory(remove it from staging area and than commit),not be listed in git status
 			b. rm FILE: remove file from working directory(still be listed in git status)
 			c. git rm --cached FILE: Remove file from Git but keep it in working tree.
 			d. git rm patterns: remove files that matchs
