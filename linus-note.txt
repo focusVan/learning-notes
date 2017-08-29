@@ -39,121 +39,7 @@ Linux学习笔记
 		c.B利用公钥加密随机字符串发送给A
 		d.A利用私钥解密B加密过的随机字符串并返回给B
 		e.B验证随机字符串
-7.VMWare虚拟机网络配置
-	a. vi /etc/sysconfig/network  添加网关:GATEWAY=<IP>
-	b. vi /etc/sysconfig/network-scripts/ifcfg-eth0配置：IPADDR=<IP>,BOOTPROTO=static,NETMASK=255.255.255.0,ARPCHECK=no,ONBOOT=yes
-	c. 配置vmnet8，网关同于新建虚拟机的网关，DNS同于网关地址，IP和虚拟机在一个子网里
-	d. vi /etc/resolv.conf 配置域名服务器为 网关地址(识别子网的虚拟机)和114.114.114.114(识别外网域名)
-	e. VMWare网关地址的查询：编辑->虚拟网络编辑器->vmnet8的NAT设置
-	f. service network restart
-8.linux的jdk配置
-	a. 拷贝jdk.tar.gz到/usr/local/
-	b. tar -zxvf jkd.tar.gz
-	c. vi /etc/profile  添加export JAVA_HOME=/usr/local/jdk, export PATH=$PATH:$JAVA_HOME/bin
-	d. 刷新环境变量:source /etc/profile
-	e. 测试: java -version
-9.tomcat配置
-	a. 拷贝tomcat.tar.gz到/usr/local
-	b. tar -zxvf tomcat.tar.gz
-	c. 启动tomcat: /usr/local/tomcat/bin/startup.sh
-	d. 查看tomcat是否启动:jps(Bootstrap)
-	e. 查看tomcat端口: netstat -anpt | grep java
-10.ssh配置
-	a. yum -y install openssh-clients10.ssh配置
-		a. yum -y install openssh-clients10.ssh配置
-			a. yum -y install openssh-clients10.ssh配置
-	b.三个字符为一组，总共三组。第一组为文件所有者权限，第二组为同用户组权限，第三组为其他非本用户组的权限。
-	目录权限一般为：r-x。文件权限一般为：r--
-	c.文件是否可以执行由x决定
-	d.权限对目录的含义。r:表示具有读取目录结构列表的权限，用ls命令可以列出该目录的内容列表。w:更改目录结构列表的权限，如新建新的文件和目录，重命名，删除，转移该目录内的文件和目录位置。x:代表用户能否近日该目录称为工作目录，如cd命令。
-2.改变文件属性与权限
-	a.chgrp:改变文件所属用户组
-	b.chown:改变文件所有者
-	c.chmod:改变文件的权限：r:4 w:2 x:1
-3.文件内容查阅
-	a.cat 由第一行开始显示文件内容 -n
-	b.tac 从最后一行开始显示文件内容
-	c.nl 显示的时候，顺便输出行号
-	d.more 一页一页的显示文件内容 空格为向下翻页，/string 关键字查询（n为下一个匹配，N为上一个匹配） q为立刻离开more b为往回翻页，但对管道无效。
-	e.less 与more类似，但可以往前翻页 ?string 向上查询 [PageUp]为向上翻页
-	f.head 只看头几行 -n
-	g.tail 只看结尾几行 -n
-	h.od 以二进制的方式读取文件内容
-4.为用户配置sudo权限
-	a. 用root编辑 vi /etc/sudoers 为focus添加一行 focus   ALL=(ALL)  ALL然后focus可以用sudo来执行系统级别的操作
-5.系统相关命令
-	a.查看和修改主机名: hostname(会话） 或者 vi /etc/sysconfig/network
-	b.修改IP: ifconfig eth0 [ip] 或者 vi /etc/sysconfig/network-scripts/ifcfg-eth0
-	c.日期和日历: date +%Y-%m-%d  cal 2017
-	e.挂载: mount umount
-	f.查看文件大小: du -h,du -ah  查看分区: df -h 统计文件或文件夹的大小du -sh file/dir
-	g.关机:halt，重启:reboot
-6.ssh相关
-	6.1 登录到远程服务器:ssh ip
-	6.2 复制文件到远程目录: scp finename user@ip:path
-	6.3 ssh身份验证机制: 用户名+密码验证 或者  密钥验证
-	6.4 密钥验证
-		a.生成公钥(个人身份标识A)和私钥(ssh-keygen,默认存在/root/.ssh目录下)，将公钥拷贝给B
-		b.B将A的公钥加入到授权列表(authorized_keys)，ssh-copy-id [ip]
-		c.B利用公钥加密随机字符串发送给A
-		d.A利用私钥解密B加密过的随机字符串并返回给B
-		e.B验证随机字符串
-7.VMWare虚拟机网络配置
-	a. vi /etc/sysconfig/network  添加网关:GATEWAY=<IP>
-	b. vi /etc/sysconfig/network-scripts/ifcfg-eth0配置：IPADDR=<IP>,BOOTPROTO=static,NETMASK=255.255.255.0,ARPCHECK=no,ONBOOT=yes
-	c. 配置vmnet8，网关同于新建虚拟机的网关，DNS同于网关地址，IP和虚拟机在一个子网里
-	d. vi /etc/resolv.conf 配置域名服务器为 网关地址(识别子网的虚拟机)和114.114.114.114(识别外网域名)
-	e. VMWare网关地址的查询：编辑->虚拟网络编辑器->vmnet8的NAT设置
-	f. service network restart
-8.linux的jdk配置
-	a. 拷贝jdk.tar.gz到/usr/local/
-	b. tar -zxvf jkd.tar.gz
-	c. vi /etc/profile  添加export JAVA_HOME=/usr/local/jdk, export PATH=$PATH:$JAVA_HOME/bin
-	d. 刷新环境变量:source /etc/profile
-	e. 测试: java -version
-9.tomcat配置
-	a. 拷贝tomcat.tar.gz到/usr/local
-Linux学习笔记
-1.文件属性
-	-rw-r--r--  2 root root 5661 sep 4 18:20 test.txt
-	权限 连接 所有者 用户组 容量 修改日期  文件名
-	a.第一个字符代表类型：d为目录 -为文件 l为连接文件
-	b.三个字符为一组，总共三组。第一组为文件所有者权限，第二组为同用户组权限，第三组为其他非本用户组的权限。
-	目录权限一般为：r-x。文件权限一般为：r--
-	c.文件是否可以执行由x决定
-	d.权限对目录的含义。r:表示具有读取目录结构列表的权限，用ls命令可以列出该目录的内容列表。w:更改目录结构列表的权限，如新建新的文件和目录，重命名，删除，转移该目录内的文件和目录位置。x:代表用户能否近日该目录称为工作目录，如cd命令。
-2.改变文件属性与权限
-	a.chgrp:改变文件所属用户组
-	b.chown:改变文件所有者
-	c.chmod:改变文件的权限：r:4 w:2 x:1
-3.文件内容查阅
-	a.cat 由第一行开始显示文件内容 -n
-	b.tac 从最后一行开始显示文件内容
-	c.nl 显示的时候，顺便输出行号
-	d.more 一页一页的显示文件内容 空格为向下翻页，/string 关键字查询（n为下一个匹配，N为上一个匹配） q为立刻离开more b为往回翻页，但对管道无效。
-	e.less 与more类似，但可以往前翻页 ?string 向上查询 [PageUp]为向上翻页
-	f.head 只看头几行 -n
-	g.tail 只看结尾几行 -n
-	h.od 以二进制的方式读取文件内容
-4.为用户配置sudo权限
-	a. 用root编辑 vi /etc/sudoers 为focus添加一行 focus   ALL=(ALL)  ALL然后focus可以用sudo来执行系统级别的操作
-5.系统相关命令
-	a.查看和修改主机名: hostname(会话） 或者 vi /etc/sysconfig/network
-	b.修改IP: ifconfig eth0 [ip] 或者 vi /etc/sysconfig/network-scripts/ifcfg-eth0
-	c.日期和日历: date +%Y-%m-%d  cal 2017
-	e.挂载: mount umount
-	f.查看文件大小: du -h,du -ah  查看分区: df -h 统计文件或文件夹的大小du -sh file/dir
-	g.关机:halt，重启:reboot
-6.ssh相关
-	6.1 登录到远程服务器:ssh ip
-	6.2 复制文件到远程目录: scp finename user@ip:path
-	6.3 ssh身份验证机制: 用户名+密码验证 或者  密钥验证
-	6.4 密钥验证
-		a.生成公钥(个人身份标识A)和私钥(ssh-keygen,默认存在/root/.ssh目录下)，将公钥拷贝给B
-		b.B将A的公钥加入到授权列表(authorized_keys)，ssh-copy-id [ip]
-		c.B利用公钥加密随机字符串发送给A
-		d.A利用私钥解密B加密过的随机字符串并返回给B
-		e.B验证随机字符串
+		f.验证通过后A可以登录B
 7.VMWare虚拟机网络配置
 	a. vi /etc/sysconfig/network  添加网关:GATEWAY=<IP>
 	b. vi /etc/sysconfig/network-scripts/ifcfg-eth0配置：IPADDR=<IP>,BOOTPROTO=static,NETMASK=255.255.255.0,ARPCHECK=no,ONBOOT=yes
@@ -203,6 +89,7 @@ Linux学习笔记
 16.查看系统中的rpm包
 	a. rpm -qa | grep mysql
 	b. 查看端口: netstat -nltp
+	c. 查看某个软件的所有相关文件的安装路径：rpm -ql mysql
 17.防火墙
 	a. 查看状态: service iptables status
 	b. 启动: service iptables start
@@ -265,3 +152,36 @@ Linux学习笔记
 20. 可以为一张网卡配置两个IP
 21. 开机自动挂载光盘
 	vi /etc/fstab 添加 /dev/cdrom   /mnt/cdrom    iso9660  defaults  0 022. 建立链接  ln -s centos  /mnt/cdrom
+22. 查看磁盘使用情况
+	a. df 查看整个文件系统使用情况
+	b. du -ah <dir> 查看目录及目录下的所有文件的大小
+	c. free 查看内存使用情况
+23. vi的使用
+    1.插入
+	a. I-在行首插入 
+	b. A-在行尾插入
+	c. o-在下一行插入
+	d. O-在上一行插入
+    2.定位
+    	a. :set nu-显示行号
+	b. :set nonu-不显示行号
+	c. :n定位到第n行
+	d. G-定位到最后一行
+	e. gg-定位到首行
+    3.替换和取消
+	a. r-替换一个字符
+	b. R-一直替换直到按下ESC
+	c. u-undo撤销上一步操作
+	d. crl+r redo返回到撤销之前
+    4.删除
+    	a. x-删除一个字符
+	b. nx-删除光标以后的n个字符
+	c. dd-删除一行
+	e. ndd-删除n行
+	f. dG-删除光标所在行到末位行
+	g. D-删除光标以后
+    5.常用快捷键
+    	a. shiff+zz-:wq
+	b. v-进入可视字符模式
+	c. V-进入行可视
+	d. crl+v-进入块可视
