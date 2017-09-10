@@ -35,7 +35,7 @@ Linux学习笔记
 	6.3 ssh身份验证机制: 用户名+密码验证 或者  密钥验证
 	6.4 密钥验证
 		a.生成公钥(个人身份标识A)和私钥(ssh-keygen,默认存在/root/.ssh目录下)，将公钥拷贝给B
-		b.B将A的公钥加入到授权列表(authorized_keys)，ssh-copy-id [ip]
+		b.B将A的公钥加入到授权列表(authorized_keys)，在机器A上运行：ssh-copy-id -i ~/.ssh/id_rsa.pub B 
 		c.B利用公钥加密随机字符串发送给A
 		d.A利用私钥解密B加密过的随机字符串并返回给B
 		e.B验证随机字符串
