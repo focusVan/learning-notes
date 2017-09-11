@@ -103,16 +103,16 @@ Linux学习笔记
 	18.5 定义shell变量的注意点
 		a. 变量=值
 		b. 符号两侧不能有空格
-		c. 常用大写
+		c. 变量名称常用大写
 		d. 单引号和双引号有区别,单引号会把所有字符脱意，双引号仅将空格脱意
-	18.6 撤销变量: unset VAL
+	18.6 撤销变量: unset VAL readonly:静态变量，不能unset
 	18.7 export: 把变量提升为全局变量(所有用户均可用，否则仅在当前shell有用)
 	18.8 反引号: 将上一个命令的输出结果赋值给变量如A=`command` 或者 A=$(command)
 	18.9 特殊变量
 		a. $? 上一个命令退出的状态（上一个命令的返回值）
-		b. $$ 单钱进程编号
+		b. $$ 当前进程编号
 		c. $0 当前脚本名称
-		d. $n 表示n位置的输入参数（n>=1）
+		d. $n 表示第n位输入参数（n>=1）
 		e. $# 表示参数的个数
 		f. $*或$@ 表示参数列表，常用于循环
 	18.10 运算符：expr m + n 或 $((m+n)) 注意expr运算符间要有空格
@@ -121,7 +121,6 @@ Linux学习笔记
 		b. for((i=0;i<=5;i++));do echo $i;done
 	18.12 while循环
 		a. while expression;do commonds;done
-		b. i=1;while((i<=3));do comonds;let i++;done
 	18.13 case语句
 		a. case $1 in;start) echo "starting";;stop) echo "stopping";;*) echo "start|stop" esac
 	18.14 read -p (提示语句) -n (字符个数) -t (等待时间）
@@ -143,10 +142,16 @@ Linux学习笔记
 		e. sed 
 			1. d命令，删除 sed '2d' example：删除文件第二行，只是处理，原文件不变；sed '/test/'d example： 删除包含test的行
 			2. s命令，替换 sed ‘s/test/mytest/g’ example,g 表示全局；sed 's/^fo/&cus/',&表示追加
-		f. awk 
+			3. sed -i: 直接修改读取的文件内容，而不是输出到终端
+			4. sed -i 's/[ ]*//g' ./conf.txt 替换conf.txt下的所有空格
+		f. awk: awk是一个强大的文本分析工具，相对于grep的查找，sed的编辑，awk在数据分析并生成报表时尤为强大，awk把文件逐行读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理
 			1. awk '{print $1}'，默认以空格，tab分割
-			2. awk -F ':' "{print $1\t$7}"
-			3. awk -F ':' 'BEGIN action1 END action2'
+			2. awk -F: "{print $1\t$7}"
+			3. awk -F: 'BEGIN action1 END action2'
+	18.21 shell脚本执行
+		a. 赋予X权限
+		b. 在解释器执行：sh test.sh
+		c. 脚本路径前加. ./test.sh
 19 大型网站架构简述
 	nginx是静态web服务器，有代理的功能，可以做复杂均衡；静态资源放在nginx里，动态资源放在tomcat（如action）,其中公共（公共service）服务可以放在定制服务器；dubbo可以查询哪台服务器可用，可以做负载均衡（服务器启动回向dubbo注册）；action调用公共服务器用RPC调用（dubbo里有封装），mycat代理数据库（分库分表和读写分离的封装，一致性哈希），mycat上可以添加redis做缓存，nigix和用户之间还有cdn服务器，部署在全国各地，主要存静态资源，动态资源cdn会转发；cdn服务器由运营商在搞，可以租用,为了保证nginx高可用，可以用keeplived，keeplived有心跳的概念
 20. 可以为一张网卡配置两个IP
