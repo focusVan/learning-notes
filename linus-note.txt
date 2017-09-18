@@ -152,6 +152,7 @@ Linux学习笔记
 		a. 赋予X权限
 		b. 在解释器执行：sh test.sh
 		c. 脚本路径前加. ./test.sh
+		d. 脚本调试: sh -vx test.sh
 19 大型网站架构简述
 	nginx是静态web服务器，有代理的功能，可以做复杂均衡；静态资源放在nginx里，动态资源放在tomcat（如action）,其中公共（公共service）服务可以放在定制服务器；dubbo可以查询哪台服务器可用，可以做负载均衡（服务器启动回向dubbo注册）；action调用公共服务器用RPC调用（dubbo里有封装），mycat代理数据库（分库分表和读写分离的封装，一致性哈希），mycat上可以添加redis做缓存，nigix和用户之间还有cdn服务器，部署在全国各地，主要存静态资源，动态资源cdn会转发；cdn服务器由运营商在搞，可以租用,为了保证nginx高可用，可以用keeplived，keeplived有心跳的概念
 20. 可以为一张网卡配置两个IP
