@@ -192,3 +192,10 @@ Linux学习笔记
 	b. v-进入可视字符模式
 	c. V-进入行可视
 	d. crl+v-进入块可视
+24. zookeeper配置
+	a. 解压到/usr/local并改名为zookeeper
+	b. vi /etc/profile里追加 export ZOOKEEPER_HOME=/usr/local/zookeeper export  PATH=$PATH:$ZOOKEEPER_HOME/bin 并 source /etc/profile
+	c. cp /usr/local/zookeeper/conf/zoo_sample.cfg zoo.cfg
+	d. vi /usr/local/zookeeper/conf/zoo.cfg 并修改dataDir=/usr/local/zookeeper/data 追加：dataLogDir=/usr/local/zookeeper/log server.1=host1:2888:3888 server.2=host2.2888:3888 server.3=host3:2888:3888
+	e. mkdir -m 755 /usr/local/zookeeper/data mkdir -m 755 /usr/localzookeeper/log
+	f. cat >> /usr/local/zookeeper/data/myid << EOF 1 EOF
