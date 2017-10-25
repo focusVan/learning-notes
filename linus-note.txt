@@ -82,10 +82,11 @@ Linux学习笔记
 	d. 列出可用YUM源: yum repolist
 	e. 安装相应软件: yum install -y httpd
 	f. 开启httpd: service httpd start
-	g. 将yum源配置到httpd中，cp -r /mnt/cdrom /var/www/html/CenOS-6.7
+	g. 将yum源配置到httpd中，ln -s /mnt/cdrom /var/www/html/CenOS-6.7
 	h. 取消先前挂载的镜像 umount /mnt/cdrom
 	i. 关闭防火墙: service iptables stop
-	e. 将其他机器的/etc/yum.repos.d的某个.repo文件的baseurl指向http服务
+	e. 将其他机器的/etc/yum.repos.d的某个.repo文件的baseurl指向http服务,http://min1/CenOS-6.7
+	f. 开机自动挂载光盘 在/etc/fstab中加入一行挂载配置，以自动挂载：/dev/cdrom     /mnt/cdrom   iso9660   defaults  0  0
 16.查看系统中的rpm包
 	a. rpm -qa | grep mysql
 	b. 查看端口: netstat -nltp
@@ -112,7 +113,7 @@ Linux学习笔记
 		a. $? 上一个命令退出的状态（上一个命令的返回值）
 		b. $$ 当前进程编号
 		c. $0 当前脚本名称
-		d. $n 表示第n位输入参数（n>=1）
+		d. $n 表示第n位输入参数（n>=1）-11js
 		e. $# 表示参数的个数
 		f. $*或$@ 表示参数列表，常用于循环
 	18.10 运算符：expr m + n 或 $((m+n)) 注意expr运算符间要有空格
